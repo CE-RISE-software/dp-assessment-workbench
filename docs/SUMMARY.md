@@ -1,5 +1,5 @@
 # Summary
 
 - [Introduction](index.md)
-
-# Others...
+- [Pipeline](pipeline.md)
+- [Live Sources](live-sources.md)

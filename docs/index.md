@@ -1,11 +1,33 @@
-# CE-RISE Software Projects Template
+# Digital Passport Model Assessment Workbench
 
-This site contains a template for a faster setup of open science and open source software projects within the CE-RISE project.
+This site documents an agent-oriented analytical toolkit for assessing SHACL-based digital passport models, comparing composed solutions, and checking SHACL-only use-case coverage.
 
 ---
 
+## Scope
 
+Release 1 provides:
 
+- SHACL ingestion from Turtle sources
+- composition-profile assessment
+- SHACL-only use-case coverage checks
+- pairwise comparison of assessment results
+- rule-based prioritization
+- discovery of built-in schemas, vocabularies, templates, and capabilities
+
+## Validation
+
+The repository-native validation path is:
+
+```bash
+make validate
+```
+
+This runs compile checks, the test suite, and lightweight CLI smoke checks without requiring an editable package install.
+
+## Next
+
+See the [Pipeline](pipeline.md) page for the analytical flow and result documents.
 
 ---
 

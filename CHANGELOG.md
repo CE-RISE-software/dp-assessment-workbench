@@ -1,10 +1,11 @@
 # Changelog
 
-All notable changes to the CE-RISE Software XXXX project will be documented in this file.
+All notable changes to the Digital Passport Model Assessment Workbench will be documented in this file.
 
-## [0.0.1] - unreleased
+## [0.1.0] - unreleased
 
 ### Added
-- Initial project structure and repository setup from template: https://ce-rise-software.codeberg.page/template-software/
-- Initial data model structure for XXXX
-- Artifacts built and deployed to pages
+- Initial Python package scaffold with `dpawb` CLI entry point
+- Contract-aligned commands for `assess`, `coverage`, `compare`, `prioritize`, and discovery operations
+- Bundled schemas, vocabularies, and templates for release-1 inputs
+- Synthetic local fixtures for evolution-track and cross-solution-track development

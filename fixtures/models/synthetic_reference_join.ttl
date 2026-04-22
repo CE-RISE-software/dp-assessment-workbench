@@ -1,0 +1,33 @@
+@prefix ex: <https://example.org/reference-join/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:PassportShape
+  a sh:NodeShape ;
+  sh:targetClass ex:Passport ;
+  sh:property ex:passport_identifier_property ;
+  sh:property ex:responsible_actor_property .
+
+ex:passport_identifier_property
+  a sh:PropertyShape ;
+  sh:path ex:passportIdentifier ;
+  sh:datatype xsd:string ;
+  sh:minCount 1 ;
+  sh:maxCount 1 .
+
+ex:responsible_actor_property
+  a sh:PropertyShape ;
+  sh:path ex:responsibleActor ;
+  sh:class ex:Actor ;
+  sh:minCount 1 .
+
+ex:ActorShape
+  a sh:NodeShape ;
+  sh:targetClass ex:Actor ;
+  sh:property ex:actor_name_property .
+
+ex:actor_name_property
+  a sh:PropertyShape ;
+  sh:path ex:actorName ;
+  sh:datatype xsd:string ;
+  sh:minCount 1 .

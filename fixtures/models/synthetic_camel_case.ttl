@@ -1,0 +1,14 @@
+@prefix ex: <https://example.org/camel/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:RecordShape
+  a sh:NodeShape ;
+  sh:targetClass ex:Record ;
+  sh:property ex:p1 .
+
+ex:p1
+  a sh:PropertyShape ;
+  sh:path ex:recordMetadata ;
+  sh:datatype xsd:string ;
+  sh:minCount 1 .

@@ -1,0 +1,17 @@
+use_case_id: product_identity_lookup
+title: Product identity lookup
+required_items:
+  - item_id: product_identifier
+    label: Product identifier
+    category: identification
+    expects_structured_value: false
+  - item_id: passport_identifier
+    label: Passport identifier
+    category: passport_metadata
+    expects_structured_value: false
+required_joins:
+  - join_id: product_to_passport
+    label: Product linked to passport
+    from_item: product_identifier
+    to_item: passport_identifier
+    join_kind: identity

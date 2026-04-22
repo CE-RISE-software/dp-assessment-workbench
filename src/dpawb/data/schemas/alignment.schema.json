@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "alignment_id",
+    "comparison_scope_label",
+    "equivalences"
+  ],
+  "properties": {
+    "alignment_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$"
+    },
+    "comparison_scope_label": {
+      "type": "string",
+      "minLength": 1
+    },
+    "equivalences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "match_id",
+          "left_iri",
+          "right_iri",
+          "entity_kind"
+        ],
+        "properties": {
+          "match_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+$"
+          },
+          "left_iri": {
+            "type": "string",
+            "format": "uri"
+          },
+          "right_iri": {
+            "type": "string",
+            "format": "uri"
+          },
+          "entity_kind": {
+            "type": "string",
+            "enum": [
+              "shape",
+              "property",
+              "class_or_concept"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

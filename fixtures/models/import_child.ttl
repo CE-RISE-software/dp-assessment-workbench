@@ -1,0 +1,14 @@
+@prefix ex: <https://example.org/import-child/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:ImportedShape
+  a sh:NodeShape ;
+  sh:targetClass ex:ImportedThing ;
+  sh:property ex:imported_identifier_property .
+
+ex:imported_identifier_property
+  a sh:PropertyShape ;
+  sh:path ex:importedIdentifier ;
+  sh:datatype xsd:string ;
+  sh:minCount 1 .

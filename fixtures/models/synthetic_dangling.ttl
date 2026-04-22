@@ -1,0 +1,12 @@
+@prefix ex: <https://example.org/dangling/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+ex:BrokenShape
+  a sh:NodeShape ;
+  sh:targetClass ex:BrokenThing ;
+  sh:property ex:broken_reference_property .
+
+ex:broken_reference_property
+  a sh:PropertyShape ;
+  sh:path ex:brokenReference ;
+  sh:node ex:MissingReferencedShape .

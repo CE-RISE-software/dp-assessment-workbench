@@ -1,0 +1,5 @@
+@prefix ex: <https://example.org/import-parent/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<https://example.org/import-parent/model>
+  owl:imports <./import_child.ttl> .

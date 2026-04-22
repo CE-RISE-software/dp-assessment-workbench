@@ -1,0 +1,7 @@
+alignment_id: ce_rise_metadata_slice_alignment
+comparison_scope_label: metadata_slice
+equivalences:
+  - match_id: dp_record_metadata_module
+    left_iri: https://ce-rise-models.codeberg.page/dp-record-metadata/
+    right_iri: https://ce-rise-models.codeberg.page/dp-record-metadata/
+    entity_kind: class_or_concept

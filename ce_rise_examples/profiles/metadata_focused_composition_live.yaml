@@ -1,0 +1,7 @@
+profile_id: ce_rise_metadata_focused_composition_live
+label: CE-RISE metadata-focused live composition
+profile_version: live
+comparison_scope_label: metadata_focused
+models:
+  - model_id: dp_record_metadata
+    source: https://ce-rise-models.codeberg.page/dp-record-metadata/shacl.ttl

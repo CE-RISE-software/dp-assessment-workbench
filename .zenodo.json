@@ -1,6 +1,6 @@
 {
-  "title": "Project template for software developed within the CE-RISE Horizon Europe project",
-  "description": "Project template for data models developed within the CE-RISE Horizon Europe project.",
+  "title": "Digital Passport Model Assessment Workbench",
+  "description": "SHACL-based analytical toolkit for assessing digital passport data models, comparing composed solutions, and evaluating SHACL-only use-case coverage.",
   "license": "EUPL-1.2",
   "upload_type": "software",
   "creators": [
@@ -12,12 +12,13 @@
   ],
   "keywords": [
     "CE-RISE",
-    "Open Source",
-    "Open Science",
+    "SHACL",
+    "RDF",
     "Digital Product Passport",
-    "Digital Material Passport"
+    "Digital Material Passport",
+    "Assessment Workbench"
   ],
-  "notes": "v0.0.1 - Initial sketch of project template.",
+  "notes": "Release metadata for the Digital Passport Model Assessment Workbench.",
   "communities": [
     { "identifier": "ce-rise" },
     { "identifier": "impact" }
@@ -27,7 +28,7 @@
   ],
   "related_identifiers": [
     {
-      "identifier": "https://codeberg.org/CE-RISE-software/template-software",
+      "identifier": "https://codeberg.org/CE-RISE-software/dp-assessment-workbench",
       "relation": "isSupplementTo",
       "resource_type": "software"
     }

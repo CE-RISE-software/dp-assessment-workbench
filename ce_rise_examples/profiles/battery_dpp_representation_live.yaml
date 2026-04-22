@@ -1,0 +1,9 @@
+profile_id: ce_rise_battery_dpp_representation_live
+label: CE-RISE battery DPP representation live composition
+profile_version: live
+comparison_scope_label: battery_dpp_representation
+models:
+  - model_id: dp_record_metadata
+    source: https://ce-rise-models.codeberg.page/dp-record-metadata/shacl.ttl
+  - model_id: traceability_life_cycle_events
+    source: https://ce-rise-models.codeberg.page/traceability-and-life-cycle-events/shacl.ttl

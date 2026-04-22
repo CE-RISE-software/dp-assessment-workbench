@@ -1,0 +1,8 @@
+profile_id: synthetic_missing_property_shape_profile
+label: Synthetic missing property shape profile
+profile_version: 0.1.0
+comparison_scope_label: battery_metadata_identification
+models:
+  - model_id: broken_property_module
+    model_version: 0.1.0
+    source: ./fixtures/models/synthetic_missing_property_shape.ttl

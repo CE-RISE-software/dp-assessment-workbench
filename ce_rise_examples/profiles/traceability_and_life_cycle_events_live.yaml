@@ -1,0 +1,7 @@
+profile_id: ce_rise_traceability_live
+label: CE-RISE traceability and life cycle events live source
+profile_version: live
+comparison_scope_label: traceability_and_life_cycle_events
+models:
+  - model_id: traceability_life_cycle_events
+    source: https://ce-rise-models.codeberg.page/traceability-and-life-cycle-events/shacl.ttl

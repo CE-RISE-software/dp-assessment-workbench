@@ -1,0 +1,11 @@
+alignment_id: synthetic_solution_alignment
+comparison_scope_label: battery_metadata_identification
+equivalences:
+  - match_id: passport_shape_match
+    left_iri: https://example.org/a/PassportShape
+    right_iri: https://example.org/b/PassportShape
+    entity_kind: shape
+  - match_id: passport_identifier_property_match
+    left_iri: https://example.org/a/passportIdentifier
+    right_iri: https://example.org/b/passportIdentifier
+    entity_kind: property

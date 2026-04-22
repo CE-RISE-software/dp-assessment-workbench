@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "result_type",
+    "inputs",
+    "content",
+    "diagnostics"
+  ],
+  "properties": {
+    "result_type": {
+      "const": "coverage_result"
+    },
+    "inputs": {
+      "type": "object",
+      "required": [
+        "profile_id",
+        "use_case_id",
+        "comparison_scope_label"
+      ],
+      "properties": {
+        "profile_id": { "type": "string" },
+        "use_case_id": { "type": "string" },
+        "comparison_scope_label": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "content": {
+      "type": "object",
+      "required": [
+        "profile_id",
+        "use_case_id",
+        "overall_coverage_class",
+        "required_item_findings",
+        "required_join_findings",
+        "source_references"
+      ],
+      "properties": {
+        "profile_id": { "type": "string" },
+        "use_case_id": { "type": "string" },
+        "overall_coverage_class": {
+          "enum": [
+            "representable",
+            "partially_representable",
+            "not_representable",
+            "indeterminate"
+          ]
+        },
+        "required_item_findings": { "type": "array" },
+        "required_join_findings": { "type": "array" },
+        "source_references": { "type": "object" }
+      },
+      "additionalProperties": true
+    },
+    "diagnostics": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": true
+}

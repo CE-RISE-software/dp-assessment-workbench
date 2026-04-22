@@ -1,0 +1,8 @@
+profile_id: synthetic_solution_b
+label: Synthetic solution b
+profile_version: 0.1.0
+comparison_scope_label: battery_metadata_identification
+models:
+  - model_id: passport_core
+    model_version: 0.1.0
+    source: ./fixtures/models/synthetic_solution_b.ttl

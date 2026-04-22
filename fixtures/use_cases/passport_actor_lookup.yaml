@@ -1,0 +1,15 @@
+use_case_id: passport_actor_lookup
+title: Passport actor lookup
+required_items:
+  - item_id: passport_identifier
+    label: Passport identifier
+    category: identification
+  - item_id: actor_name
+    label: Actor name
+    category: actor
+required_joins:
+  - join_id: passport_to_actor
+    label: Passport to actor
+    from_item: passport_identifier
+    to_item: actor_name
+    join_kind: responsibility

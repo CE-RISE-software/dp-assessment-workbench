@@ -1,0 +1,8 @@
+profile_id: synthetic_camel_case_profile
+label: Synthetic camel case profile
+profile_version: 0.1.0
+comparison_scope_label: battery_metadata_identification
+models:
+  - model_id: camel_case_module
+    model_version: 0.1.0
+    source: ./fixtures/models/synthetic_camel_case.ttl

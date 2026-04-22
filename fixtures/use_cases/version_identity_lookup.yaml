@@ -1,0 +1,7 @@
+use_case_id: version_identity_lookup
+title: Version identity lookup
+required_items:
+  - item_id: chemistry_grade_code
+    label: Chemistry grade code
+    category: classification
+required_joins: []

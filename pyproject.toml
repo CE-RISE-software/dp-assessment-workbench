@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dp-assessment-workbench"
+version = "0.1.0"
+description = "SHACL-based analytical workbench for digital passport model assessment and use-case coverage."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "EUPL-1.2" }
+authors = [
+  { name = "Riccardo Boero" }
+]
+dependencies = [
+  "PyYAML>=6.0",
+  "jsonschema>=4.23",
+  "rdflib>=7.0",
+]
+keywords = ["shacl", "rdf", "digital-product-passport", "analytics", "cli"]
+
+[project.scripts]
+dpawb = "dpawb.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+dpawb = ["data/**/*.json", "data/**/*.yaml"]

@@ -1,0 +1,7 @@
+alignment_id: synthetic_alignment_example
+comparison_scope_label: battery_metadata_identification
+equivalences:
+  - match_id: product_identifier_property
+    left_iri: https://example.org/left/productIdentifier
+    right_iri: https://example.org/right/productIdentifier
+    entity_kind: property

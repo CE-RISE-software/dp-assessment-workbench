@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "use_case_id",
+    "title",
+    "required_items",
+    "required_joins"
+  ],
+  "properties": {
+    "use_case_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "required_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "item_id",
+          "label",
+          "category"
+        ],
+        "properties": {
+          "item_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "identification",
+              "passport_metadata",
+              "versioning_provenance",
+              "actor",
+              "classification",
+              "composition",
+              "performance",
+              "circularity",
+              "compliance",
+              "sustainability"
+            ]
+          },
+          "expects_structured_value": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "required_joins": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "join_id",
+          "label",
+          "from_item",
+          "to_item"
+        ],
+        "properties": {
+          "join_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "from_item": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+$"
+          },
+          "to_item": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+$"
+          },
+          "join_kind": {
+            "type": "string",
+            "enum": [
+              "identity",
+              "provenance",
+              "responsibility",
+              "composition",
+              "reference"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

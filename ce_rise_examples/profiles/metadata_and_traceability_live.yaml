@@ -1,0 +1,9 @@
+profile_id: ce_rise_metadata_and_traceability_live
+label: CE-RISE metadata and traceability live composition
+profile_version: live
+comparison_scope_label: metadata_and_traceability
+models:
+  - model_id: dp_record_metadata
+    source: https://ce-rise-models.codeberg.page/dp-record-metadata/shacl.ttl
+  - model_id: traceability_life_cycle_events
+    source: https://ce-rise-models.codeberg.page/traceability-and-life-cycle-events/shacl.ttl

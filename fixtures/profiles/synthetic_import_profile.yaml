@@ -1,0 +1,8 @@
+profile_id: synthetic_import_profile
+label: Synthetic import profile
+profile_version: 0.1.0
+comparison_scope_label: battery_metadata_identification
+models:
+  - model_id: imported_module
+    model_version: 0.1.0
+    source: ./fixtures/models/import_parent.ttl

@@ -1,0 +1,8 @@
+profile_id: synthetic_reference_join
+label: Synthetic reference join
+profile_version: 0.1.0
+comparison_scope_label: battery_metadata_identification
+models:
+  - model_id: passport_actor_module
+    model_version: 0.1.0
+    source: ./fixtures/models/synthetic_reference_join.ttl

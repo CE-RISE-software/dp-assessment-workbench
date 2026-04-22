@@ -1,0 +1,30 @@
+use_case_id: battery_product_identification
+title: Battery product identification
+required_items:
+  - item_id: passport_identifier
+    label: Passport identifier
+    category: passport_metadata
+    expects_structured_value: false
+  - item_id: battery_identifier
+    label: Battery identifier
+    category: identification
+    expects_structured_value: false
+  - item_id: battery_category
+    label: Battery category
+    category: classification
+    expects_structured_value: true
+  - item_id: manufacturer_information
+    label: Manufacturer information
+    category: actor
+    expects_structured_value: true
+required_joins:
+  - join_id: battery_to_category
+    label: Battery category retrievable from battery identifier context
+    from_item: battery_identifier
+    to_item: battery_category
+    join_kind: reference
+  - join_id: battery_to_manufacturer
+    label: Battery linked to manufacturer
+    from_item: battery_identifier
+    to_item: manufacturer_information
+    join_kind: responsibility

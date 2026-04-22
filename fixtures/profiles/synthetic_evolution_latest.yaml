@@ -1,0 +1,8 @@
+profile_id: synthetic_evolution_latest
+label: Synthetic evolution latest
+profile_version: 0.2.0
+comparison_scope_label: battery_metadata_identification
+models:
+  - model_id: passport_core
+    model_version: 0.2.0
+    source: ./fixtures/models/synthetic_battery_metadata_v2.ttl

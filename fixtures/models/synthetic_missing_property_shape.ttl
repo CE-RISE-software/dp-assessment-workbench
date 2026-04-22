@@ -1,0 +1,7 @@
+@prefix ex: <https://example.org/missing-property/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+ex:BrokenNodeShape
+  a sh:NodeShape ;
+  sh:targetClass ex:BrokenThing ;
+  sh:property ex:MissingPropertyShape .

@@ -1,0 +1,6 @@
+allowed_values:
+  - identity
+  - provenance
+  - responsibility
+  - composition
+  - reference

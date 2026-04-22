@@ -1,0 +1,8 @@
+profile_id: synthetic_richer_contradiction
+label: Synthetic richer contradiction
+profile_version: 0.1.0
+comparison_scope_label: battery_metadata_identification
+models:
+  - model_id: contradictory_module
+    model_version: 0.1.0
+    source: ./fixtures/models/synthetic_richer_contradiction.ttl

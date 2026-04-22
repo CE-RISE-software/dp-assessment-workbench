@@ -1,0 +1,23 @@
+@prefix ex: <https://example.org/redundancy/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:RedundantShape
+  a sh:NodeShape ;
+  sh:targetClass ex:RedundantThing ;
+  sh:property ex:first_duplicate_property ;
+  sh:property ex:second_duplicate_property .
+
+ex:first_duplicate_property
+  a sh:PropertyShape ;
+  sh:path ex:dupPath ;
+  sh:datatype xsd:string ;
+  sh:minCount 1 ;
+  sh:maxCount 1 .
+
+ex:second_duplicate_property
+  a sh:PropertyShape ;
+  sh:path ex:dupPath ;
+  sh:datatype xsd:string ;
+  sh:minCount 1 ;
+  sh:maxCount 1 .

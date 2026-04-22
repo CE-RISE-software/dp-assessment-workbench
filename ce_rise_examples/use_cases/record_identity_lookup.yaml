@@ -1,0 +1,16 @@
+use_case_id: record_identity_lookup
+title: Record identity lookup
+required_items:
+  - item_id: record_identifier
+    label: Record identifier
+    category: identification
+  - item_id: record_metadata
+    label: Record metadata
+    category: passport_metadata
+    expects_structured_value: true
+required_joins:
+  - join_id: record_to_metadata
+    label: Record linked to metadata
+    from_item: record_identifier
+    to_item: record_metadata
+    join_kind: identity

@@ -1,0 +1,15 @@
+@prefix ex: <https://example.org/contradiction/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:ContradictoryShape
+  a sh:NodeShape ;
+  sh:targetClass ex:ContradictoryThing ;
+  sh:property ex:contradictory_property .
+
+ex:contradictory_property
+  a sh:PropertyShape ;
+  sh:path ex:brokenCount ;
+  sh:datatype xsd:string ;
+  sh:minCount 2 ;
+  sh:maxCount 1 .

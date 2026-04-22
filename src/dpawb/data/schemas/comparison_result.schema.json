@@ -1,0 +1,293 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "result_type",
+    "inputs",
+    "content",
+    "diagnostics"
+  ],
+  "properties": {
+    "result_type": {
+      "const": "comparison_result"
+    },
+    "inputs": {
+      "type": "object",
+      "required": [
+        "left_profile_id",
+        "right_profile_id",
+        "comparison_scope_label"
+      ],
+      "properties": {
+        "left_profile_id": { "type": "string" },
+        "right_profile_id": { "type": "string" },
+        "comparison_scope_label": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "content": {
+      "$ref": "#/$defs/comparison_content"
+    },
+    "structural_comparison": {
+      "$ref": "#/$defs/structural_comparison"
+    },
+    "alignment": {
+      "$ref": "#/$defs/alignment"
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "comparison_content": {
+      "type": "object",
+      "required": [
+        "structural_comparison"
+      ],
+      "properties": {
+        "structural_comparison": {
+          "$ref": "#/$defs/structural_comparison"
+        },
+        "alignment": {
+          "$ref": "#/$defs/alignment"
+        }
+      },
+      "additionalProperties": true
+    },
+    "structural_comparison": {
+      "type": "object",
+      "required": [
+        "metric_deltas",
+        "ranked_observations"
+      ],
+      "properties": {
+        "metric_deltas": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/metric_delta"
+          }
+        },
+        "ranked_observations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ranked_observation"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "metric_delta": {
+      "type": "object",
+      "required": [
+        "metric_id",
+        "left_value",
+        "right_value",
+        "delta"
+      ],
+      "properties": {
+        "metric_id": { "type": "string" },
+        "left_value": { "type": "number" },
+        "right_value": { "type": "number" },
+        "delta": { "type": "number" }
+      },
+      "additionalProperties": true
+    },
+    "ranked_observation": {
+      "type": "object",
+      "required": [
+        "observation_id",
+        "message",
+        "metric_id",
+        "delta",
+        "module_context"
+      ],
+      "properties": {
+        "observation_id": { "type": "string" },
+        "message": { "type": "string" },
+        "metric_id": { "type": "string" },
+        "delta": { "type": "number" },
+        "module_context": {
+          "$ref": "#/$defs/module_context"
+        }
+      },
+      "additionalProperties": true
+    },
+    "module_context": {
+      "type": "object",
+      "required": [
+        "metric_focus",
+        "change_basis",
+        "top_changed_modules"
+      ],
+      "properties": {
+        "metric_focus": {
+          "type": "string",
+          "enum": [
+            "property_shape_count",
+            "node_shape_count",
+            "overall_change"
+          ]
+        },
+        "change_basis": {
+          "const": "node_shape_count_and_property_shape_count"
+        },
+        "top_changed_modules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/module_delta"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "module_delta": {
+      "type": "object",
+      "required": [
+        "model_id",
+        "left_node_shape_count",
+        "right_node_shape_count",
+        "node_shape_delta",
+        "left_property_shape_count",
+        "right_property_shape_count",
+        "property_shape_delta",
+        "change_magnitude"
+      ],
+      "properties": {
+        "model_id": { "type": "string" },
+        "left_node_shape_count": { "type": "integer", "minimum": 0 },
+        "right_node_shape_count": { "type": "integer", "minimum": 0 },
+        "node_shape_delta": { "type": "integer" },
+        "left_property_shape_count": { "type": "integer", "minimum": 0 },
+        "right_property_shape_count": { "type": "integer", "minimum": 0 },
+        "property_shape_delta": { "type": "integer" },
+        "change_magnitude": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": true
+    },
+    "alignment": {
+      "type": "object",
+      "required": [
+        "alignment_id",
+        "comparison_scope_label",
+        "equivalence_count",
+        "alignment_aware_comparison"
+      ],
+      "properties": {
+        "alignment_id": { "type": "string" },
+        "comparison_scope_label": { "type": "string" },
+        "equivalence_count": { "type": "integer", "minimum": 0 },
+        "alignment_aware_comparison": {
+          "$ref": "#/$defs/alignment_aware_comparison"
+        }
+      },
+      "additionalProperties": true
+    },
+    "alignment_aware_comparison": {
+      "type": "object",
+      "required": [
+        "status",
+        "matched_pair_count",
+        "left_present_count",
+        "right_present_count",
+        "alignment_coverage_ratio",
+        "evaluated_pairs",
+        "ranked_alignment_observations"
+      ],
+      "properties": {
+        "status": {
+          "const": "declared_alignment_evaluated"
+        },
+        "matched_pair_count": { "type": "integer", "minimum": 0 },
+        "left_present_count": { "type": "integer", "minimum": 0 },
+        "right_present_count": { "type": "integer", "minimum": 0 },
+        "alignment_coverage_ratio": { "type": "number", "minimum": 0.0 },
+        "evaluated_pairs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evaluated_pair"
+          }
+        },
+        "ranked_alignment_observations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/alignment_observation"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "evaluated_pair": {
+      "type": "object",
+      "required": [
+        "match_id",
+        "entity_kind",
+        "left_iri",
+        "right_iri",
+        "left_present",
+        "right_present",
+        "pair_status"
+      ],
+      "properties": {
+        "match_id": { "type": "string" },
+        "entity_kind": {
+          "type": "string",
+          "enum": [
+            "shape",
+            "property",
+            "class_or_concept"
+          ]
+        },
+        "left_iri": { "type": "string" },
+        "right_iri": { "type": "string" },
+        "left_present": { "type": "boolean" },
+        "right_present": { "type": "boolean" },
+        "pair_status": {
+          "type": "string",
+          "enum": [
+            "matched",
+            "left_only",
+            "right_only",
+            "missing_both"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "alignment_observation": {
+      "type": "object",
+      "required": [
+        "observation_id",
+        "match_id",
+        "entity_kind",
+        "pair_status",
+        "message"
+      ],
+      "properties": {
+        "observation_id": { "type": "string" },
+        "match_id": { "type": "string" },
+        "entity_kind": {
+          "type": "string",
+          "enum": [
+            "shape",
+            "property",
+            "class_or_concept"
+          ]
+        },
+        "pair_status": {
+          "type": "string",
+          "enum": [
+            "left_only",
+            "right_only",
+            "missing_both"
+          ]
+        },
+        "message": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  }
+}

@@ -1,0 +1,11 @@
+allowed_values:
+  - identification
+  - passport_metadata
+  - versioning_provenance
+  - actor
+  - classification
+  - composition
+  - performance
+  - circularity
+  - compliance
+  - sustainability

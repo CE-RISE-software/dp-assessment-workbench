@@ -7,8 +7,8 @@ on:
       - 'v*.*.*-*'  # Matches pre-release tags like v1.0.0-beta
 
 env:
-  PROJECT_NAME: CE-RISE Software Template # PLEASE UPDATE THE PROJECT TITLE HERE
-  PRIMARY_REPO_URL: https://codeberg.org/CE-RISE-software/CE-RISE-software # PLEASE UPDATE THE PROJECT MAIN URL HERE
+  PROJECT_NAME: Digital Passport Model Assessment Workbench
+  PRIMARY_REPO_URL: https://codeberg.org/CE-RISE-software/dp-assessment-workbench
 
 jobs:
   create-release:
@@ -48,19 +48,12 @@ jobs:
 
           ### Overview
 
-          This tag contains a versioned release of the CE-RISE software components.
-          It is intended to keep GitHub releases aligned with Codeberg tags for downstream automation and archival.
-
-          ### Release Assets
-
-          If configured in CI/CD, this release may be accompanied by:
-          - container images (version tag and commit SHA tags),
-          - OpenAPI artifacts,
-          - generated SDK packages.
+          This tag contains a versioned release of the Digital Passport Model Assessment Workbench.
+          It is mirrored from the canonical Codeberg repository to keep archival and downstream automation aligned.
 
           ### Documentation
 
-          Project documentation and operational guidance are published from the primary repository.
+          Project documentation and operational guidance are published from the primary repository and Pages site.
 
           ---
 

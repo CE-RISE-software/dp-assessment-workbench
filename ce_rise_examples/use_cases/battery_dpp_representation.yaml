@@ -1,0 +1,44 @@
+use_case_id: battery_dpp_representation
+title: Battery DPP representation
+required_items:
+  - item_id: passport_identifier
+    label: Passport identifier
+    category: passport_metadata
+    expects_structured_value: false
+  - item_id: battery_identifier
+    label: Battery identifier
+    category: identification
+    expects_structured_value: false
+  - item_id: passport_version_or_revision
+    label: Passport version or revision
+    category: versioning_provenance
+    expects_structured_value: false
+  - item_id: responsible_actor
+    label: Responsible actor
+    category: actor
+    expects_structured_value: true
+  - item_id: battery_type_or_classification
+    label: Battery type or classification
+    category: classification
+    expects_structured_value: true
+required_joins:
+  - join_id: passport_to_battery
+    label: Passport linked to battery
+    from_item: passport_identifier
+    to_item: battery_identifier
+    join_kind: identity
+  - join_id: passport_to_version
+    label: Passport linked to version or revision
+    from_item: passport_identifier
+    to_item: passport_version_or_revision
+    join_kind: provenance
+  - join_id: passport_to_responsible_actor
+    label: Passport linked to responsible actor
+    from_item: passport_identifier
+    to_item: responsible_actor
+    join_kind: responsibility
+  - join_id: battery_to_classification
+    label: Battery linked to type or classification
+    from_item: battery_identifier
+    to_item: battery_type_or_classification
+    join_kind: reference

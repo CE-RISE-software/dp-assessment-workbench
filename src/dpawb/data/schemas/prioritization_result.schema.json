@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "result_type",
+    "inputs",
+    "content",
+    "diagnostics"
+  ],
+  "properties": {
+    "result_type": {
+      "const": "prioritization_result"
+    },
+    "inputs": {
+      "type": "object",
+      "required": [
+        "assessment_profile_id",
+        "comparison_included",
+        "coverage_result_count"
+      ],
+      "properties": {
+        "assessment_profile_id": { "type": "string" },
+        "comparison_included": { "type": "boolean" },
+        "coverage_result_count": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": true
+    },
+    "content": {
+      "$ref": "#/$defs/prioritization_content"
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/target"
+      }
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "prioritization_content": {
+      "type": "object",
+      "required": [
+        "targets"
+      ],
+      "properties": {
+        "targets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/target"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "target": {
+      "type": "object",
+      "required": [
+        "target_id",
+        "priority_rank_basis",
+        "message",
+        "rule_trace",
+        "priority_rank"
+      ],
+      "properties": {
+        "target_id": { "type": "string" },
+        "priority_rank_basis": { "type": "integer", "minimum": 1 },
+        "message": { "type": "string" },
+        "rule_trace": {
+          "$ref": "#/$defs/rule_trace"
+        },
+        "priority_rank": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": true
+    },
+    "rule_trace": {
+      "type": "object",
+      "required": [
+        "rule",
+        "reason"
+      ],
+      "properties": {
+        "rule": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "pair_status": {
+          "type": "string",
+          "enum": [
+            "left_only",
+            "right_only",
+            "missing_both"
+          ]
+        },
+        "match_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

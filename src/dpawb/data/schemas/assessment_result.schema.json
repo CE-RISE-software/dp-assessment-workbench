@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "result_type",
+    "inputs",
+    "content",
+    "diagnostics"
+  ],
+  "properties": {
+    "result_type": {
+      "const": "assessment_result"
+    },
+    "inputs": {
+      "type": "object",
+      "required": [
+        "profile_id",
+        "profile_version",
+        "comparison_scope_label"
+      ],
+      "properties": {
+        "profile_id": { "type": "string" },
+        "profile_version": { "type": "string" },
+        "comparison_scope_label": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "content": {
+      "type": "object",
+      "required": [
+        "profile",
+        "modules",
+        "trace_index",
+        "metrics",
+        "maintainability_findings"
+      ],
+      "properties": {
+        "profile": { "type": "object" },
+        "modules": { "type": "array" },
+        "trace_index": { "type": "object" },
+        "metrics": { "type": "array" },
+        "maintainability_findings": { "type": "array" }
+      },
+      "additionalProperties": true
+    },
+    "diagnostics": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": true
+}

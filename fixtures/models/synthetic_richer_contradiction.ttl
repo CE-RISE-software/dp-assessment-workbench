@@ -1,0 +1,26 @@
+@prefix ex: <https://example.org/contradiction/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:PassportShape
+  a sh:NodeShape ;
+  sh:targetClass ex:Passport ;
+  sh:property ex:conflicting_property ;
+  sh:property ex:qualified_conflict_property .
+
+ex:conflicting_property
+  a sh:PropertyShape ;
+  sh:path ex:conflictingValue ;
+  sh:datatype xsd:string ;
+  sh:class ex:Actor .
+
+ex:qualified_conflict_property
+  a sh:PropertyShape ;
+  sh:path ex:qualifiedActor ;
+  sh:qualifiedValueShape ex:ActorShape ;
+  sh:qualifiedMinCount 2 ;
+  sh:qualifiedMaxCount 1 .
+
+ex:ActorShape
+  a sh:NodeShape ;
+  sh:targetClass ex:Actor .

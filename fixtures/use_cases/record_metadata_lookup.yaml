@@ -1,0 +1,7 @@
+use_case_id: record_metadata_lookup
+title: Record metadata lookup
+required_items:
+  - item_id: record_metadata
+    label: Record metadata
+    category: passport_metadata
+required_joins: []
