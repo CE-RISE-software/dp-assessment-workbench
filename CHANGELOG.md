@@ -1,11 +1,14 @@
 # Changelog
 
-All notable changes to the Digital Passport Model Assessment Workbench will be documented in this file.
+## 0.1.0
 
-## [0.1.0] - unreleased
+First public release.
 
 ### Added
-- Initial Python package scaffold with `dpawb` CLI entry point
-- Contract-aligned commands for `assess`, `coverage`, `compare`, `prioritize`, and discovery operations
-- Bundled schemas, vocabularies, and templates for release-1 inputs
-- Synthetic local fixtures for evolution-track and cross-solution-track development
+
+- Release-1 analytical pipeline with package API and CLI operations:
+  `assess`, `coverage`, `compare`, `prioritize`, `schema`, `vocabulary`, `template`, `capabilities`, `summarize`
+- Built-in schemas, vocabularies, and templates for contract-aligned discovery
+- Deterministic JSON result documents for all analytical operations
+- Synthetic regression fixtures and repository-native validation workflow
+- Progression-based example/tutorial materials for humans and AI agents

@@ -21,6 +21,12 @@ The release-1 analytical pipeline is intentionally explicit and file-based.
   Output: one `prioritization_result`
   Consumes coverage gaps, maintainability findings, structural comparison observations, and alignment-gap observations when present.
 
+- `summarize`
+  Input: one or more result documents
+  Output: one `summary_result`
+  Produces a compact deterministic interpretation over existing results without rerunning analysis.
+  The JSON result is canonical; the CLI may also render it as Markdown.
+
 ## Result Documents
 
 All analytical result documents use the same top-level envelope:
@@ -46,11 +52,18 @@ For `prioritization_result`, the ranked target list may therefore include:
 - structural comparison observations
 - alignment gaps derived from declared but incompletely matched equivalences
 
+For `summary_result`, the main sections are:
+
+- `headline`
+- `result_types`
+- `key_points`
+- `follow_up_questions`
+
 Current release-1 analytical semantics are intentionally conservative, but they now include:
 
 - direct contradiction detection for cardinality conflicts and datatype-versus-object-reference conflicts
 - item coverage matching from SHACL property-path, owner-shape, and target-class evidence
-- join coverage matching from shared owner shapes or explicit cross-shape object-reference paths
+- join coverage matching from shared owner shapes, explicit cross-shape object-reference paths, or record-level retrieval context where appropriate
 
 ## Discovery
 

@@ -1,6 +1,6 @@
 PYTHON ?= python
 
-.PHONY: test smoke capabilities validate
+.PHONY: test smoke capabilities validate release-check
 
 test:
 	PYTHONPATH=src $(PYTHON) -m unittest discover -s tests -v
@@ -13,3 +13,6 @@ capabilities:
 
 validate:
 	./scripts/validate-local.sh
+
+release-check:
+	./scripts/release-check-local.sh

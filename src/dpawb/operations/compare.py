@@ -115,6 +115,22 @@ def _direction(delta: float) -> str:
     return "increased" if delta > 0 else "decreased"
 
 
+def _comparison_signal_priority(metric_id: str, kind: str | None) -> int:
+    if kind in {"share", "density"}:
+        return 1
+    if metric_id in {"cross_module_reference_count", "shared_vocabulary_overlap_count"}:
+        return 2
+    return 3
+
+
+def _normalized_delta_score(left_value: float, right_value: float, kind: str | None) -> float:
+    delta = right_value - left_value
+    if kind in {"share", "density"}:
+        return abs(delta)
+    scale = max(abs(left_value), abs(right_value), 1.0)
+    return abs(delta) / scale
+
+
 def _observation_message(metric_id: str, delta: float) -> str:
     direction = _direction(delta)
     absolute_delta = abs(delta)
@@ -194,12 +210,15 @@ def compare(left_path: str, right_path: str, alignment_path: str | None = None) 
         right_metric = right_metrics.get(metric_id)
         left_value = float(left_metric["value"]) if left_metric else 0.0
         right_value = float(right_metric["value"]) if right_metric else 0.0
+        kind = str(left_metric.get("kind") if left_metric else right_metric.get("kind")) if (left_metric or right_metric) else None
         metric_deltas.append(
             {
                 "metric_id": metric_id,
                 "left_value": left_value,
                 "right_value": right_value,
                 "delta": right_value - left_value,
+                "kind": kind,
+                "normalized_delta_score": _normalized_delta_score(left_value, right_value, kind),
             }
         )
 
@@ -209,9 +228,19 @@ def compare(left_path: str, right_path: str, alignment_path: str | None = None) 
             "message": _observation_message(str(item["metric_id"]), float(item["delta"])),
             "metric_id": item["metric_id"],
             "delta": item["delta"],
+            "kind": item.get("kind"),
+            "normalized_delta_score": item["normalized_delta_score"],
         }
         for index, item in enumerate(
-            sorted(metric_deltas, key=lambda entry: abs(float(entry["delta"])), reverse=True)
+            sorted(
+                metric_deltas,
+                key=lambda entry: (
+                    _comparison_signal_priority(str(entry["metric_id"]), entry.get("kind")),
+                    -float(entry["normalized_delta_score"]),
+                    -abs(float(entry["delta"])),
+                    str(entry["metric_id"]),
+                ),
+            )
         )
         if float(item["delta"]) != 0.0
     ]

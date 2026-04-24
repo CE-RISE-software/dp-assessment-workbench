@@ -28,12 +28,6 @@
     "content": {
       "$ref": "#/$defs/comparison_content"
     },
-    "structural_comparison": {
-      "$ref": "#/$defs/structural_comparison"
-    },
-    "alignment": {
-      "$ref": "#/$defs/alignment"
-    },
     "diagnostics": {
       "type": "array",
       "items": {
@@ -86,13 +80,17 @@
         "metric_id",
         "left_value",
         "right_value",
-        "delta"
+        "delta",
+        "kind",
+        "normalized_delta_score"
       ],
       "properties": {
         "metric_id": { "type": "string" },
         "left_value": { "type": "number" },
         "right_value": { "type": "number" },
-        "delta": { "type": "number" }
+        "delta": { "type": "number" },
+        "kind": { "type": ["string", "null"] },
+        "normalized_delta_score": { "type": "number", "minimum": 0.0 }
       },
       "additionalProperties": true
     },
@@ -103,6 +101,8 @@
         "message",
         "metric_id",
         "delta",
+        "kind",
+        "normalized_delta_score",
         "module_context"
       ],
       "properties": {
@@ -110,6 +110,8 @@
         "message": { "type": "string" },
         "metric_id": { "type": "string" },
         "delta": { "type": "number" },
+        "kind": { "type": ["string", "null"] },
+        "normalized_delta_score": { "type": "number", "minimum": 0.0 },
         "module_context": {
           "$ref": "#/$defs/module_context"
         }

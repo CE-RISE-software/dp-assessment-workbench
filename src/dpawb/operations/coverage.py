@@ -14,6 +14,24 @@ from dpawb.validation import validate_document
 
 
 STOPWORDS = {"information", "details", "detail", "or"}
+SEMANTIC_TOKEN_EQUIVALENTS = {
+    "identifier": {"identifier", "id"},
+    "id": {"id", "identifier"},
+    "battery": {"battery", "product"},
+    "product": {"product", "battery"},
+    "manufacturer": {"manufacturer", "operator", "producer", "actor"},
+    "operator": {"operator", "manufacturer", "producer", "actor"},
+    "producer": {"producer", "manufacturer", "operator", "actor"},
+    "actor": {"actor", "manufacturer", "operator", "producer"},
+    "category": {"category", "classification"},
+    "classification": {"classification", "category"},
+    "type": {"type", "category", "classification"},
+    "revision": {"revision", "version"},
+    "version": {"version", "revision"},
+    "passport": {"passport", "record", "related"},
+    "record": {"record", "passport", "related"},
+    "related": {"related", "passport", "record"},
+}
 
 
 def _normalize(text: str) -> str:
@@ -145,14 +163,25 @@ def _score_candidate(
     for token_string in candidate.token_strings:
         all_tokens.update(_tokenize(token_string))
     overlap = len(expanded_required_tokens.intersection(all_tokens))
-    exact = int(bool(core_required_tokens) and core_required_tokens.issubset(all_tokens))
+    exact = int(
+        bool(core_required_tokens)
+        and all(
+            bool(SEMANTIC_TOKEN_EQUIVALENTS.get(token, {token}).intersection(all_tokens))
+            for token in core_required_tokens
+        )
+    )
     return exact, overlap
 
 
 def _core_required_tokens(item: dict[str, object]) -> set[str]:
     item_id = str(item["item_id"])
     label = str(item["label"])
-    return _tokenize(label).union(_tokenize(item_id))
+    tokens = _tokenize(label).union(_tokenize(item_id))
+    if "identifier" in tokens:
+        tokens.add("id")
+    if "id" in tokens:
+        tokens.add("identifier")
+    return tokens
 
 
 def _expanded_required_tokens(item: dict[str, object], core_tokens: set[str]) -> set[str]:
@@ -177,6 +206,16 @@ def _expanded_required_tokens(item: dict[str, object], core_tokens: set[str]) ->
         tokens.update({"actor", "operator", "producer", "identifier"})
 
     return tokens
+
+
+def _has_structured_support(candidates: list[PropertyCandidate]) -> bool:
+    return any(
+        candidate.has_object_reference
+        or candidate.has_node_kind
+        or bool(candidate.owner_target_classes)
+        or bool(candidate.reference_targets)
+        for candidate in candidates
+    )
 
 
 def _classify_item(item: dict[str, object], candidates: list[PropertyCandidate]) -> dict[str, object]:
@@ -207,9 +246,9 @@ def _classify_item(item: dict[str, object], candidates: list[PropertyCandidate])
         coverage_class = "representable"
         adequacy_note = "A matching property shape was found through SHACL path and shape tokens."
     elif scored_candidates[0][0][0] == 1 and expects_structured:
-        if any(candidate.has_object_reference for candidate in best_candidates):
+        if _has_structured_support(best_candidates):
             coverage_class = "representable"
-            adequacy_note = "A matching object-reference property shape supports the expected structured value."
+            adequacy_note = "A matching property shape is anchored in a typed structured context that supports the expected structured value."
         else:
             coverage_class = "partially_representable"
             adequacy_note = "A matching property shape was found, but structured-value support is weaker than an object reference."
@@ -276,6 +315,15 @@ def _record_level_reference_support(
     combined_shapes = from_shapes.union(to_shapes)
     product_profile_shapes = {shape for shape in combined_shapes if "product-profile" in shape}
     dp_record_shapes = {shape for shape in combined_shapes if "dp-record-metadata" in shape}
+    generic_record_shapes = {
+        shape
+        for shape in combined_shapes
+        if shape.endswith("#Dataset") or shape.endswith("/Resource")
+    }
+    if dp_record_shapes and dp_record_shapes == combined_shapes:
+        return True
+    if dp_record_shapes and generic_record_shapes:
+        return True
     return bool(product_profile_shapes and (dp_record_shapes or len(product_profile_shapes) >= 2))
 
 
@@ -325,7 +373,7 @@ def _classify_join(
                 else:
                     coverage_class = "partially_representable"
                     note = "A cross-shape object-reference path connects the matched items, but one endpoint remains only partially representable."
-            elif join.get("join_kind") == "reference" and _record_level_reference_support(from_item, to_item):
+            elif join.get("join_kind") in {"reference", "provenance"} and _record_level_reference_support(from_item, to_item):
                 if from_class == "representable" and to_class == "representable":
                     coverage_class = "representable"
                     note = "Both endpoint items appear retrievable from a shared record-level context."

@@ -19,14 +19,24 @@ def _comparison_priority(metric_id: str) -> int | None:
     priority_by_metric = {
         "typed_property_share": 1,
         "cardinality_bounded_property_share": 1,
-        "open_property_share": 1,
         "constraint_density": 1,
-        "number_of_object_reference_properties": 2,
-        "number_of_datatype_constrained_properties": 2,
-        "cross_module_reference_share": 3,
-        "shared_vocabulary_overlap_ratio": 3,
+        "shared_vocabulary_overlap_ratio": 2,
+        "open_property_share": 3,
     }
     return priority_by_metric.get(metric_id)
+
+
+def _comparison_delta_is_improvement_target(metric_id: str, delta: float) -> bool:
+    if metric_id in {
+        "typed_property_share",
+        "cardinality_bounded_property_share",
+        "constraint_density",
+        "shared_vocabulary_overlap_ratio",
+    }:
+        return delta > 0
+    if metric_id == "open_property_share":
+        return delta < 0
+    return False
 
 
 def prioritize(
@@ -132,9 +142,12 @@ def prioritize(
             metric_priority = _comparison_priority(metric_id)
             if metric_priority is None:
                 continue
-            ranked_structural.append((metric_priority, observation))
-        ranked_structural.sort(key=lambda item: (item[0], str(item[1]["metric_id"])))
-        for _, observation in ranked_structural[:5]:
+            delta = float(observation["delta"])
+            if not _comparison_delta_is_improvement_target(metric_id, delta):
+                continue
+            ranked_structural.append((metric_priority, float(observation.get("normalized_delta_score", abs(delta))), observation))
+        ranked_structural.sort(key=lambda item: (item[0], -item[1], str(item[2]["metric_id"])))
+        for _, _, observation in ranked_structural[:5]:
             targets.append(
                 {
                     "target_id": f"comparison_{observation['observation_id']}",

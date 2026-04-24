@@ -1,0 +1,11 @@
+profile_id: ce_rise_battery_passport_metadata_and_classification_live
+label: CE-RISE battery passport metadata and classification live composition
+profile_version: live
+comparison_scope_label: battery_passport_metadata_and_classification
+models:
+  - model_id: dp_record_metadata
+    source: https://ce-rise-models.codeberg.page/dp-record-metadata/shacl.ttl
+  - model_id: product_profile
+    source: https://ce-rise-models.codeberg.page/product-profile/shacl.ttl
+  - model_id: traceability_life_cycle_events
+    source: https://ce-rise-models.codeberg.page/traceability-and-life-cycle-events/shacl.ttl

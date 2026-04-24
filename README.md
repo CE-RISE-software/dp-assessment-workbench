@@ -2,6 +2,8 @@
 
 A Python toolkit and thin CLI for SHACL-based assessment of digital passport data models, pairwise comparison of composed solutions, and SHACL-only use-case coverage analysis.
 
+This README is primarily a repository and development entry point. The user-facing conceptual and usage reference is in [docs](docs/index.md).
+
 ---
 
 ## What this repository contains
@@ -10,7 +12,7 @@ A Python toolkit and thin CLI for SHACL-based assessment of digital passport dat
 - Contract-aligned input schemas for composition profiles, use cases, and alignments
 - Built-in vocabularies and templates exposed through discovery commands
 - Synthetic local fixtures used only for tests and validation
-- Separate example inputs for real CE-RISE live sources
+- A progression-based examples tree for human and AI-agent tutorials
 
 ## Release-1 shape
 
@@ -24,6 +26,40 @@ The release-1 tool is designed primarily as an agent-usable analytical toolkit w
 - `vocabulary`
 - `template`
 - `capabilities`
+- `summarize`
+
+## AI-agent use
+
+The intended primary integration mode is an AI agent orchestrating the analytical pipeline through the package API or the CLI. In practice, this means:
+
+- deterministic file-based inputs
+- JSON outputs suitable for agent parsing and chaining
+- explicit analytical steps instead of a chat-oriented interface
+
+The CLI remains useful for direct human invocation, but the main product shape is an analytical engine that can be called by agent skills, workflow runners, or future tool adapters.
+
+An MCP server is a sensible next integration step. The current command surface already maps cleanly to MCP-style tools such as:
+
+- `assess`
+- `coverage`
+- `compare`
+- `prioritize`
+- `schema`
+- `vocabulary`
+- `template`
+- `capabilities`
+- `summarize`
+
+So yes: this repository can reasonably grow toward a dedicated MCP server, containerized for Docker distribution and later publication in an MCP server registry. The clean approach is:
+
+- keep `dpawb` as the core Python package
+- add a thin MCP server wrapper on top of the existing package API
+- ship that wrapper as a separate runtime entry point and Docker image
+- publish the MCP-facing metadata only after the tool contract is stable enough
+
+The current contract-level alignment for that future step is documented in [docs/mcp-readiness.md](docs/mcp-readiness.md).
+
+The public Python API is documented in [docs/api-reference.md](docs/api-reference.md).
 
 ## Install
 
@@ -57,8 +93,19 @@ make validate
 dpawb assess --profile fixtures/profiles/synthetic_evolution_latest.yaml
 dpawb coverage --profile fixtures/profiles/synthetic_evolution_latest.yaml --use-case fixtures/use_cases/product_identity_lookup.yaml
 dpawb compare --left left_assessment.json --right right_assessment.json
+dpawb summarize --result comparison_result.json --format markdown
 dpawb capabilities
 ```
+
+## Local Release Check
+
+Before wiring PyPI CI/CD, run the local packaging check in an environment with `wheel` available:
+
+```bash
+make release-check
+```
+
+This builds a wheel and sdist, installs the wheel into a clean temporary environment, and runs installed CLI smoke checks.
 
 ## Structure
 
@@ -68,59 +115,73 @@ There are two distinct input areas in this repository:
   Synthetic, repository-local test data only.
   These files are used by tests, smoke checks, and CI validation.
 
-- `ce_rise_examples/`
-  Real CE-RISE example inputs intended for manual runs.
-  These are opt-in examples and are not part of CI validation.
+- `examples/01-source-ingestion/`
+  Live-source example inputs intended for manual runs.
+  These are the first step in the tutorial progression and are not part of CI validation.
 
-## Live-source examples
+The full examples tree is organized by analytical task, not by input data model:
 
-Example profiles for live CE-RISE SHACL sources are included at:
+- `examples/01-source-ingestion/`
+  Load and assess declared profiles.
+- `examples/02-structural-comparison/`
+  Compare two profile assessment results.
+- `examples/03-reduced-use-case-comparison/`
+  Run the first aligned use-case comparison.
+- `examples/04-extended-use-case-comparison/`
+  Run a broader aligned use-case comparison.
 
-- `ce_rise_examples/profiles/battery_dpp_representation_live.yaml`
-- `ce_rise_examples/profiles/battery_product_identification_live.yaml`
-- `ce_rise_examples/profiles/dp_record_metadata_live.yaml`
-- `ce_rise_examples/profiles/traceability_and_life_cycle_events_live.yaml`
-- `ce_rise_examples/profiles/metadata_focused_composition_live.yaml`
-- `ce_rise_examples/profiles/metadata_and_traceability_live.yaml`
-- `ce_rise_examples/profiles/metadata_slice_left_live.yaml`
-- `ce_rise_examples/profiles/metadata_slice_right_live.yaml`
+Each example is usable by humans as a step-by-step command tutorial and by AI agents as a deterministic recipe over explicit files.
+
+## Source-ingestion examples
+
+Example profiles for live SHACL sources are included at:
+
+- `examples/01-source-ingestion/profiles/battery_dpp_representation_live.yaml`
+- `examples/01-source-ingestion/profiles/battery_product_identification_live.yaml`
+- `examples/01-source-ingestion/profiles/dp_record_metadata_live.yaml`
+- `examples/01-source-ingestion/profiles/traceability_and_life_cycle_events_live.yaml`
+- `examples/01-source-ingestion/profiles/metadata_focused_composition_live.yaml`
+- `examples/01-source-ingestion/profiles/metadata_and_traceability_live.yaml`
+- `examples/02-structural-comparison/profiles/metadata_slice_left_live.yaml`
+- `examples/02-structural-comparison/profiles/metadata_slice_right_live.yaml`
 
 If you want a single live source, the metadata-oriented example is the main starting point:
 
 ```bash
-./scripts/run-local.sh assess --profile ce_rise_examples/profiles/dp_record_metadata_live.yaml
+./scripts/run-local.sh assess --profile examples/01-source-ingestion/profiles/dp_record_metadata_live.yaml
 ```
 
 If you want a composed profile, use:
 
 ```bash
-./scripts/run-local.sh assess --profile ce_rise_examples/profiles/metadata_and_traceability_live.yaml
+./scripts/run-local.sh assess --profile examples/01-source-ingestion/profiles/metadata_and_traceability_live.yaml
 ```
 
 You can also run the traceability-only example:
 
 ```bash
-./scripts/run-local.sh assess --profile ce_rise_examples/profiles/traceability_and_life_cycle_events_live.yaml
+./scripts/run-local.sh assess --profile examples/01-source-ingestion/profiles/traceability_and_life_cycle_events_live.yaml
 ```
 
-For manual coverage runs, example CE-RISE-oriented use cases are included at:
+For manual coverage runs, example use cases are included at:
 
-- `ce_rise_examples/use_cases/battery_dpp_representation.yaml`
-- `ce_rise_examples/use_cases/battery_product_identification.yaml`
-- `ce_rise_examples/use_cases/record_identity_lookup.yaml`
-- `ce_rise_examples/use_cases/provenance_actor_lookup.yaml`
+- `examples/01-source-ingestion/use_cases/battery_dpp_representation.yaml`
+- `examples/01-source-ingestion/use_cases/battery_product_identification.yaml`
+- `examples/01-source-ingestion/use_cases/battery_passport_metadata_and_classification.yaml`
+- `examples/01-source-ingestion/use_cases/record_identity_lookup.yaml`
+- `examples/01-source-ingestion/use_cases/provenance_actor_lookup.yaml`
 
 Example:
 
 ```bash
 ./scripts/run-local.sh coverage \
-  --profile ce_rise_examples/profiles/dp_record_metadata_live.yaml \
-  --use-case ce_rise_examples/use_cases/record_identity_lookup.yaml
+  --profile examples/01-source-ingestion/profiles/dp_record_metadata_live.yaml \
+  --use-case examples/01-source-ingestion/use_cases/record_identity_lookup.yaml
 ```
 
 The main real comparison-driver use case is:
 
-- `ce_rise_examples/use_cases/battery_dpp_representation.yaml`
+- `examples/01-source-ingestion/use_cases/battery_dpp_representation.yaml`
 
 It intentionally stays narrow. It requires:
 
@@ -132,43 +193,68 @@ It intentionally stays narrow. It requires:
 
 and the joins needed to treat those as one battery-DPP representation slice.
 
-The matching CE-RISE starting composition for that use case is:
+The matching starting composition for that use case is:
 
-- `ce_rise_examples/profiles/battery_dpp_representation_live.yaml`
+- `examples/01-source-ingestion/profiles/battery_dpp_representation_live.yaml`
 
 It currently composes:
 
 - `dp_record_metadata`
 - `traceability_and_life_cycle_events`
 
-This is the current CE-RISE baseline for the real CE-RISE versus BatteryPass comparison work.
+This is the current broader baseline for the battery-DPP comparison work.
 
 For the first reduced real pass, the narrower identity-focused comparison slice is:
 
+- canonical example folder:
+  `examples/03-reduced-use-case-comparison/`
 - use case:
-  `ce_rise_examples/use_cases/battery_product_identification.yaml`
-- CE-RISE profile:
-  `ce_rise_examples/profiles/battery_product_identification_live.yaml`
+  `examples/03-reduced-use-case-comparison/use_cases/use_case.yaml`
+- left profile:
+  `examples/03-reduced-use-case-comparison/profiles/left_profile.yaml`
+- right profile:
+  `examples/03-reduced-use-case-comparison/profiles/right_profile.yaml`
 
 This reduced slice composes:
 
 - `dp_record_metadata`
 - `product_profile`
+- `traceability_and_life_cycle_events`
 
-and is intended as the first product-identification comparison against the
+and is the first validated product-identification comparison slice against the
 BatteryPass General Product Information model.
+
+A second broader validated slice is also included:
+
+- canonical example folder:
+  `examples/04-extended-use-case-comparison/`
+- use case:
+  `examples/04-extended-use-case-comparison/use_cases/use_case.yaml`
+- left profile:
+  `examples/04-extended-use-case-comparison/profiles/left_profile.yaml`
+- right profile:
+  `examples/04-extended-use-case-comparison/profiles/right_profile.yaml`
+
+This slice adds passport version/revision and battery type/classification while keeping the same CE-RISE composed model set.
+
+The two current cross-ecosystem validation notes are:
+
+- `examples/03-reduced-use-case-comparison/notes/comparison_note.md`
+- `examples/04-extended-use-case-comparison/notes/comparison_note.md`
+
+The step-by-step user reference for these examples is in [docs/example-applications.md](docs/example-applications.md).
 
 For manual comparison runs, a comparison-ready live pair is included with the same declared scope label:
 
-- `ce_rise_examples/profiles/metadata_slice_left_live.yaml`
-- `ce_rise_examples/profiles/metadata_slice_right_live.yaml`
-- `ce_rise_examples/alignments/metadata_slice_alignment.yaml` as a starting-point alignment example
+- `examples/02-structural-comparison/profiles/metadata_slice_left_live.yaml`
+- `examples/02-structural-comparison/profiles/metadata_slice_right_live.yaml`
+- `examples/02-structural-comparison/alignments/metadata_slice_alignment.yaml` as a starting-point alignment example
 
 Typical flow:
 
 ```bash
-./scripts/run-local.sh assess --profile ce_rise_examples/profiles/metadata_slice_left_live.yaml --output /tmp/left.json
-./scripts/run-local.sh assess --profile ce_rise_examples/profiles/metadata_slice_right_live.yaml --output /tmp/right.json
+./scripts/run-local.sh assess --profile examples/02-structural-comparison/profiles/metadata_slice_left_live.yaml --output /tmp/left.json
+./scripts/run-local.sh assess --profile examples/02-structural-comparison/profiles/metadata_slice_right_live.yaml --output /tmp/right.json
 ./scripts/run-local.sh compare --left /tmp/left.json --right /tmp/right.json
 ```
 
@@ -178,7 +264,7 @@ With an explicit analyst-authored alignment:
 ./scripts/run-local.sh compare \
   --left /tmp/left.json \
   --right /tmp/right.json \
-  --alignment ce_rise_examples/alignments/metadata_slice_alignment.yaml
+  --alignment examples/02-structural-comparison/alignments/metadata_slice_alignment.yaml
 ```
 
 When an alignment file is provided, the comparison result now includes two alignment-oriented views:
@@ -201,15 +287,15 @@ The current analytical core is still conservative by design, but it now goes bey
 
 - contradiction detection covers direct cardinality conflicts and datatype-versus-object-reference conflicts
 - item coverage uses SHACL path, owner-shape, and target-class evidence
-- join coverage can be satisfied by either a shared owner shape or an explicit cross-shape object-reference path
+- join coverage can be satisfied by a shared owner shape, an explicit cross-shape object-reference path, or record-level retrieval context when that is the intended analytical interpretation
 
 ## Repository layout
 
 - `src/dpawb/`: package, CLI, and analytical operations
 - `src/dpawb/data/`: bundled schemas, vocabularies, and templates
 - `fixtures/`: synthetic repository-local models, profiles, use cases, and alignments for tests only
-- `ce_rise_examples/`: opt-in real CE-RISE example profiles, use cases, and alignments for manual runs
-- `battery_pass_examples/`: real comparison notes and source-selection artifacts for the BatteryPass side
+- `examples/01-source-ingestion/`: source-ingestion profiles, use cases, and alignments for manual runs
+- `examples/03-reduced-use-case-comparison/`: self-contained aligned use-case comparison examples
 - `scripts/`: repo-native execution and test helpers
 - `.github/workflows/validate.yml` and `.forgejo/workflows/validate.yml`: CI validation via the repo-native path
 - `AGENTS.md`: project contract and release-1 decisions

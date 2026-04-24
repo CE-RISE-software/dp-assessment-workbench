@@ -1,8 +1,0 @@
-profile_id: batterypass_battery_product_identification
-label: BatteryPass battery product identification reduced slice
-profile_version: 1.2.0_proxy
-comparison_scope_label: battery_product_identification
-models:
-  - model_id: general_product_information
-    model_version: 1.2.0
-    source: ./battery_pass_examples/models/general_product_information_1_2_0.shacl.ttl

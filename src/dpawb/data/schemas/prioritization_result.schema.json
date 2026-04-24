@@ -28,12 +28,6 @@
     "content": {
       "$ref": "#/$defs/prioritization_content"
     },
-    "targets": {
-      "type": "array",
-      "items": {
-        "$ref": "#/$defs/target"
-      }
-    },
     "diagnostics": {
       "type": "array",
       "items": {

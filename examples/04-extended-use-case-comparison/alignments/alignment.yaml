@@ -1,0 +1,19 @@
+alignment_id: battery_passport_metadata_and_classification_ce_rise_alignment
+comparison_scope_label: battery_passport_metadata_and_classification
+equivalences:
+  - match_id: passport_identifier_property
+    left_iri: https://ce-rise-models.codeberg.page/dp-record-metadata/related_passport_id
+    right_iri: https://batterypass.example.org/general-product-information/batteryPassportIdentifier
+    entity_kind: property
+  - match_id: product_identifier_property
+    left_iri: https://ce-rise-models.codeberg.page/product-profile/unique_product_identifier_value
+    right_iri: https://batterypass.example.org/general-product-information/productIdentifier
+    entity_kind: property
+  - match_id: passport_version_property
+    left_iri: http://purl.org/pav/version
+    right_iri: https://batterypass.example.org/general-product-information/passportVersion
+    entity_kind: property
+  - match_id: battery_category_property
+    left_iri: https://ce-rise-models.codeberg.page/product-profile/product_category_value
+    right_iri: https://batterypass.example.org/general-product-information/batteryCategory
+    entity_kind: property

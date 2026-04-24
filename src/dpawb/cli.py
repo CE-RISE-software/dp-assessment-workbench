@@ -4,13 +4,21 @@ import argparse
 import sys
 from pathlib import Path
 
-from dpawb.api import assess, capabilities, compare, coverage, prioritize, schema, template, vocabulary
+from dpawb.api import assess, capabilities, compare, coverage, prioritize, schema, summarize, template, vocabulary
 from dpawb.errors import DpawbError, InputError
 from dpawb.io import dump_json
+from dpawb.operations.summarize import render_markdown
 
 
 def _write_result(result: dict[str, object], output_path: str | None) -> None:
     payload = dump_json(result)
+    if output_path:
+        Path(output_path).write_text(payload, encoding="utf-8")
+    else:
+        sys.stdout.write(payload)
+
+
+def _write_text_result(payload: str, output_path: str | None) -> None:
     if output_path:
         Path(output_path).write_text(payload, encoding="utf-8")
     else:
@@ -53,6 +61,7 @@ def build_parser() -> argparse.ArgumentParser:
             "coverage_result",
             "comparison_result",
             "prioritization_result",
+            "summary_result",
         ],
     )
     schema_parser.add_argument("--output")
@@ -67,6 +76,11 @@ def build_parser() -> argparse.ArgumentParser:
 
     capabilities_parser = subparsers.add_parser("capabilities")
     capabilities_parser.add_argument("--output")
+
+    summarize_parser = subparsers.add_parser("summarize")
+    summarize_parser.add_argument("--result", action="append", required=True, dest="results")
+    summarize_parser.add_argument("--format", choices=["json", "markdown"], default="json")
+    summarize_parser.add_argument("--output")
 
     return parser
 
@@ -93,6 +107,11 @@ def main(argv: list[str] | None = None) -> int:
                 result = template(args.name)
             case "capabilities":
                 result = capabilities()
+            case "summarize":
+                result = summarize(args.results)
+                if args.format == "markdown":
+                    _write_text_result(render_markdown(result), getattr(args, "output", None))
+                    return 0
             case _:
                 raise InputError(f"Unsupported command: {args.command}")
         _write_result(result, getattr(args, "output", None))

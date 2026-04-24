@@ -1,0 +1,7 @@
+profile_id: batterypass_battery_passport_metadata_and_classification
+label: BatteryPass battery passport metadata and classification reduced slice
+profile_version: 1.2.0-proxy
+comparison_scope_label: battery_passport_metadata_and_classification
+models:
+  - model_id: general_product_information
+    source: ./examples/04-extended-use-case-comparison/models/general_product_information_with_version_1_2_0.shacl.ttl
