@@ -108,7 +108,7 @@ def template(name: str) -> dict[str, object]:
 
 
 def capabilities() -> dict[str, object]:
-    """Return command/API capability metadata for humans, agents, and future MCP tools."""
+    """Return command/API capability metadata for humans, agents, and MCP tools."""
 
     return _capabilities()
 

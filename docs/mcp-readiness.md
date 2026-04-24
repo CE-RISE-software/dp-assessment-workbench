@@ -8,13 +8,13 @@ The implementation rule is:
 
 - one package API function
 - one CLI command
-- one future MCP tool
+- one MCP tool
 
 with the same conceptual inputs and the same JSON result payload.
 
 ## Tool Mapping
 
-| Package API | CLI command | Future MCP tool | Result type |
+| Package API | CLI command | MCP tool | Result type |
 | --- | --- | --- | --- |
 | `assess` | `assess` | `assess` | `assessment_result` |
 | `coverage` | `coverage` | `coverage` | `coverage_result` |
@@ -39,13 +39,13 @@ This applies to analytical results and now also to discovery-style results.
 
 ## Discovery Bridge
 
-`capabilities` is the main bridge for future MCP-aware agent tooling.
+`capabilities` is the main bridge for MCP-aware agent tooling.
 
 It now states, for each operation:
 
 - the CLI command name
 - the package API function name
-- the intended future MCP tool name
+- the MCP tool name
 - the conceptual inputs
 - stable input-field descriptions
 - the emitted result type
@@ -67,7 +67,7 @@ The current package/CLI names remain the source of truth. The `input_fields` ent
 The release-`0.1.1` MCP identity is:
 
 - registry name: `io.github.ce-rise-software/dpawb`
-- OCI image: `ghcr.io/ce-rise-software/dpawb-mcp:0.1.1`
+- OCI image pattern: `ghcr.io/ce-rise-software/dpawb-mcp:<release-version>`
 - official registry base: `https://registry.modelcontextprotocol.io/`
 - source metadata file: `server.json`
 
@@ -92,7 +92,7 @@ The MCP server is prepared for two runtime paths:
 - local Python installation through the `dpawb` package
 - GitHub Container Registry image for MCP-oriented distribution from the GitHub mirror
 
-The repository also includes `server.json` for official MCP Registry publication from GitHub Actions using GitHub OIDC.
+The repository includes placeholder MCP registry metadata in `server.json`. The publish workflow rewrites the release version and OCI image tag at publication time before uploading to the official MCP Registry with GitHub OIDC.
 
 ## Non-Goals For 0.1.1
 

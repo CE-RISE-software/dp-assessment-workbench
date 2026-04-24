@@ -7,11 +7,11 @@
     "url": "https://github.com/CE-RISE-software/dp-assessment-workbench",
     "source": "github"
   },
-  "version": "0.1.1",
+  "version": "0.0.0",
   "packages": [
     {
       "registryType": "oci",
-      "identifier": "ghcr.io/ce-rise-software/dpawb-mcp:0.1.1",
+      "identifier": "ghcr.io/ce-rise-software/dpawb-mcp:0.0.0",
       "transport": {
         "type": "stdio"
       }

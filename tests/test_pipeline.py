@@ -28,7 +28,7 @@ class PipelineTests(unittest.TestCase):
         self.assertIn("assess", [item["command"] for item in commands])
         assess_command = next(item for item in commands if item["command"] == "assess")
         self.assertEqual(assess_command["api_function"], "assess")
-        self.assertEqual(assess_command["future_mcp_tool"], "assess")
+        self.assertEqual(assess_command["mcp_tool"], "assess")
         self.assertIn("profile", assess_command["input_fields"])
         self.assertIn("alignment", result["content"]["schemas"])
         self.assertIn("summarize", [item["command"] for item in commands])

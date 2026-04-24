@@ -77,7 +77,7 @@ def capabilities() -> dict[str, object]:
                 {
                     "command": "assess",
                     "api_function": "assess",
-                    "future_mcp_tool": "assess",
+                    "mcp_tool": "assess",
                     "inputs": ["profile"],
                     "input_fields": {"profile": "Path or URL-backed composition profile YAML."},
                     "result_type": "assessment_result",
@@ -85,7 +85,7 @@ def capabilities() -> dict[str, object]:
                 {
                     "command": "coverage",
                     "api_function": "coverage",
-                    "future_mcp_tool": "coverage",
+                    "mcp_tool": "coverage",
                     "inputs": ["profile", "use_case"],
                     "input_fields": {
                         "profile": "Path or URL-backed composition profile YAML.",
@@ -96,7 +96,7 @@ def capabilities() -> dict[str, object]:
                 {
                     "command": "compare",
                     "api_function": "compare",
-                    "future_mcp_tool": "compare",
+                    "mcp_tool": "compare",
                     "inputs": ["left_assessment", "right_assessment", "optional_alignment"],
                     "input_fields": {
                         "left_assessment": "Path to the left assessment_result JSON document.",
@@ -108,7 +108,7 @@ def capabilities() -> dict[str, object]:
                 {
                     "command": "prioritize",
                     "api_function": "prioritize",
-                    "future_mcp_tool": "prioritize",
+                    "mcp_tool": "prioritize",
                     "inputs": ["assessment", "optional_comparison", "optional_coverage_list"],
                     "input_fields": {
                         "assessment": "Path to one assessment_result JSON document.",
@@ -120,7 +120,7 @@ def capabilities() -> dict[str, object]:
                 {
                     "command": "schema",
                     "api_function": "schema",
-                    "future_mcp_tool": "schema",
+                    "mcp_tool": "schema",
                     "inputs": ["name"],
                     "input_fields": {"name": "Built-in schema name."},
                     "result_type": "schema_result",
@@ -128,7 +128,7 @@ def capabilities() -> dict[str, object]:
                 {
                     "command": "vocabulary",
                     "api_function": "vocabulary",
-                    "future_mcp_tool": "vocabulary",
+                    "mcp_tool": "vocabulary",
                     "inputs": ["name"],
                     "input_fields": {"name": "Built-in vocabulary name."},
                     "result_type": "vocabulary_result",
@@ -136,7 +136,7 @@ def capabilities() -> dict[str, object]:
                 {
                     "command": "template",
                     "api_function": "template",
-                    "future_mcp_tool": "template",
+                    "mcp_tool": "template",
                     "inputs": ["name"],
                     "input_fields": {"name": "Built-in template name."},
                     "result_type": "template_result",
@@ -144,7 +144,7 @@ def capabilities() -> dict[str, object]:
                 {
                     "command": "capabilities",
                     "api_function": "capabilities",
-                    "future_mcp_tool": "capabilities",
+                    "mcp_tool": "capabilities",
                     "inputs": [],
                     "input_fields": {},
                     "result_type": "capabilities_result",
@@ -152,7 +152,7 @@ def capabilities() -> dict[str, object]:
                 {
                     "command": "summarize",
                     "api_function": "summarize",
-                    "future_mcp_tool": "summarize",
+                    "mcp_tool": "summarize",
                     "inputs": ["result_list"],
                     "input_fields": {
                         "result": "One or more existing result JSON document paths.",

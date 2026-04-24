@@ -72,7 +72,7 @@ The public Python API is documented in [the published API reference](https://ce-
 The MCP server identity prepared for publication is:
 
 - registry name: `io.github.ce-rise-software/dpawb`
-- OCI image: `ghcr.io/ce-rise-software/dpawb-mcp:0.1.1`
+- OCI image pattern: `ghcr.io/ce-rise-software/dpawb-mcp:<release-version>`
 - transport: `stdio`
 - official registry base: `https://registry.modelcontextprotocol.io/`
 
@@ -90,7 +90,7 @@ Local client configuration example:
 }
 ```
 
-OCI-oriented registry metadata is declared in [`server.json`](server.json).
+OCI-oriented registry metadata is declared in [`server.json`](server.json) and versioned by the publish workflow at release time.
 
 ## Install
 
