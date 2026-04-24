@@ -5,6 +5,12 @@ on:
     tags:
       - 'v*.*.*'
       - 'v*.*.*-*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Released version to publish, without the leading v'
+        required: true
+        type: string
 
 jobs:
   publish-mcp:
@@ -17,10 +23,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && format('refs/tags/v{0}', github.event.inputs.version) || github.ref }}
 
       - name: Set release variables
         run: |
-          echo "VERSION=${GITHUB_REF#refs/tags/v}" >> "$GITHUB_ENV"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "VERSION=${{ github.event.inputs.version }}" >> "$GITHUB_ENV"
+          else
+            echo "VERSION=${GITHUB_REF#refs/tags/v}" >> "$GITHUB_ENV"
+          fi
           echo "OWNER_LC=${GITHUB_REPOSITORY_OWNER,,}" >> "$GITHUB_ENV"
 
       - name: Verify release metadata alignment
