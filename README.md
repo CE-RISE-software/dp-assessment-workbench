@@ -1,5 +1,8 @@
 # Digital Passport Model Assessment Workbench
 
+[![PyPI - Version](https://img.shields.io/pypi/v/dpawb)](https://pypi.org/project/dpawb/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19731237.svg)](https://doi.org/10.5281/zenodo.19731237)
+
 A Python toolkit and thin CLI for SHACL-based assessment of digital passport data models, pairwise comparison of composed solutions, and SHACL-only use-case coverage analysis.
 
 This README is primarily a repository and development entry point. The user-facing conceptual and usage reference is at [the published documentation site](https://ce-rise-software.codeberg.page/dp-assessment-workbench/). The repository-source docs remain available in [`docs/`](docs/index.md).
