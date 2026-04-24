@@ -2,7 +2,7 @@
 
 A Python toolkit and thin CLI for SHACL-based assessment of digital passport data models, pairwise comparison of composed solutions, and SHACL-only use-case coverage analysis.
 
-This README is primarily a repository and development entry point. The user-facing conceptual and usage reference is in [docs](docs/index.md).
+This README is primarily a repository and development entry point. The user-facing conceptual and usage reference is at [the published documentation site](https://ce-rise-software.codeberg.page/dp-assessment-workbench/). The repository-source docs remain available in [`docs/`](docs/index.md).
 
 ---
 
@@ -57,9 +57,9 @@ So yes: this repository can reasonably grow toward a dedicated MCP server, conta
 - ship that wrapper as a separate runtime entry point and Docker image
 - publish the MCP-facing metadata only after the tool contract is stable enough
 
-The current contract-level alignment for that future step is documented in [docs/mcp-readiness.md](docs/mcp-readiness.md).
+The current contract-level alignment for that future step is documented in [the published MCP readiness page](https://ce-rise-software.codeberg.page/dp-assessment-workbench/mcp-readiness.html).
 
-The public Python API is documented in [docs/api-reference.md](docs/api-reference.md).
+The public Python API is documented in [the published API reference](https://ce-rise-software.codeberg.page/dp-assessment-workbench/api-reference.html).
 
 ## Install
 
@@ -67,6 +67,12 @@ The public Python API is documented in [docs/api-reference.md](docs/api-referenc
 python -m venv .venv
 . .venv/bin/activate
 pip install -e .
+```
+
+Published package name:
+
+```bash
+pip install dpawb
 ```
 
 If you are working in a restricted environment, the package is configured to build with `setuptools` so editable installs do not depend on fetching an extra build backend.
@@ -242,7 +248,7 @@ The two current cross-ecosystem validation notes are:
 - `examples/03-reduced-use-case-comparison/notes/comparison_note.md`
 - `examples/04-extended-use-case-comparison/notes/comparison_note.md`
 
-The step-by-step user reference for these examples is in [docs/example-applications.md](docs/example-applications.md).
+The step-by-step user reference for these examples is in [the published example applications guide](https://ce-rise-software.codeberg.page/dp-assessment-workbench/example-applications.html).
 
 For manual comparison runs, a comparison-ready live pair is included with the same declared scope label:
 

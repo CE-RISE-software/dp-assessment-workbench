@@ -18,7 +18,7 @@
     "Digital Material Passport",
     "Assessment Workbench"
   ],
-  "notes": "Release metadata for the Digital Passport Model Assessment Workbench.",
+  "notes": "v0.1.0 -First full version of Digital Passport Model Assessment Workbench.",
   "communities": [
     { "identifier": "ce-rise" },
     { "identifier": "impact" }
