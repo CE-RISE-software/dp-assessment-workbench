@@ -3,7 +3,7 @@
 [![PyPI - Version](https://img.shields.io/pypi/v/dpawb)](https://pypi.org/project/dpawb/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19731237.svg)](https://doi.org/10.5281/zenodo.19731237)
 
-<!-- mcp-name: io.github.ce-rise-software/dpawb -->
+<!-- mcp-name: io.github.CE-RISE-software/dpawb -->
 
 A Python toolkit and thin CLI for SHACL-based assessment of digital passport data models, pairwise comparison of composed solutions, and SHACL-only use-case coverage analysis.
 
@@ -71,12 +71,12 @@ The public Python API is documented in [the published API reference](https://ce-
 
 The MCP server identity prepared for publication is:
 
-- registry name: `io.github.ce-rise-software/dpawb`
+- registry name: `io.github.CE-RISE-software/dpawb`
 - OCI image pattern: `ghcr.io/ce-rise-software/dpawb-mcp:<release-version>`
 - transport: `stdio`
 - official registry base: `https://registry.modelcontextprotocol.io/`
 
-Once published from the GitHub mirror, the server should be discoverable in the official MCP Registry under the name `io.github.ce-rise-software/dpawb`.
+Once published from the GitHub mirror, the server should be discoverable in the official MCP Registry under the name `io.github.CE-RISE-software/dpawb`.
 
 Local client configuration example:
 

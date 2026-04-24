@@ -66,12 +66,12 @@ The current package/CLI names remain the source of truth. The `input_fields` ent
 
 The release-`0.1.1` MCP identity is:
 
-- registry name: `io.github.ce-rise-software/dpawb`
+- registry name: `io.github.CE-RISE-software/dpawb`
 - OCI image pattern: `ghcr.io/ce-rise-software/dpawb-mcp:<release-version>`
 - official registry base: `https://registry.modelcontextprotocol.io/`
 - source metadata file: `server.json`
 
-Once the GitHub-mirror publication workflow succeeds, the server should be discoverable in the official MCP Registry by searching for `io.github.ce-rise-software/dpawb`.
+Once the GitHub-mirror publication workflow succeeds, the server should be discoverable in the official MCP Registry by searching for `io.github.CE-RISE-software/dpawb`.
 
 Minimal local client configuration:
 

@@ -92,6 +92,6 @@ class McpServerTests(unittest.TestCase):
 
     def test_server_json_matches_release_identity(self) -> None:
         server_document = json.loads(Path("server.json").read_text(encoding="utf-8"))
-        self.assertEqual(server_document["name"], "io.github.ce-rise-software/dpawb")
+        self.assertEqual(server_document["name"], "io.github.CE-RISE-software/dpawb")
         self.assertEqual(server_document["version"], "0.0.0")
         self.assertEqual(server_document["packages"][0]["identifier"], "ghcr.io/ce-rise-software/dpawb-mcp:0.0.0")
