@@ -1,6 +1,6 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.ce-rise-software/dpawb",
+  "name": "io.github.CE-RISE-software/dpawb",
   "title": "Digital Passport Assessment Workbench",
   "description": "Deterministic SHACL-based assessment and comparison for digital passport data models.",
   "repository": {
