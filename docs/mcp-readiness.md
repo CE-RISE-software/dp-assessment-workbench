@@ -73,6 +73,10 @@ The release-`0.1.1` MCP identity is:
 
 Once the GitHub-mirror publication workflow succeeds, the server should be discoverable in the official MCP Registry by searching for `io.github.CE-RISE-software/dpawb`.
 
+Registry discovery page:
+
+- `https://registry.modelcontextprotocol.io/?q=dpawb`
+
 Minimal local client configuration:
 
 ```json

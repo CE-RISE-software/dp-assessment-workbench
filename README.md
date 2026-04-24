@@ -78,6 +78,10 @@ The MCP server identity prepared for publication is:
 
 Once published from the GitHub mirror, the server should be discoverable in the official MCP Registry under the name `io.github.CE-RISE-software/dpawb`.
 
+Registry discovery page:
+
+- `https://registry.modelcontextprotocol.io/?q=dpawb`
+
 Local client configuration example:
 
 ```json
