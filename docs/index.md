@@ -60,9 +60,9 @@ Release 1 provides:
 - [Analysis Dimensions](analysis-dimensions.md): what the tool measures and reports.
 - [Pipeline](pipeline.md): operations, inputs, outputs, and result documents.
 - [API Reference](api-reference.md): Python package functions for humans, agents, and workflow runners.
-- [Result Interpretation](result-interpretation.md): how to read rich JSON outputs and the planned lightweight interpretation component.
+- [Result Interpretation](result-interpretation.md): how to read rich JSON outputs and deterministic summaries.
 - [Example Applications](example-applications.md): tutorial-style analytical progression for humans and AI agents.
-- [MCP Server](mcp-readiness.md): stdio MCP runtime, registry discovery, packaging, and publication shape.
+- [MCP Server](mcp-server.md): stdio MCP runtime, registry discovery, packaging, and publication shape.
 - [Source Ingestion](source-ingestion.md): first tutorial step for profile loading and live URL examples.
 
 ## Repository Validation

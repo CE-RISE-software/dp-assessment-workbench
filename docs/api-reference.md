@@ -104,7 +104,7 @@ Current names:
 
 Return a `capabilities_result` describing the package/CLI command surface.
 
-This is the recommended discovery entry point for AI agents and future MCP wrappers.
+This is the recommended discovery entry point for AI agents and MCP wrappers.
 
 ## Agent Usage Pattern
 

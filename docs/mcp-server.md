@@ -1,6 +1,6 @@
 # MCP Server
 
-Release `0.1.1` ships a thin stdio MCP server over the same deterministic package operations and JSON result contracts.
+The package ships a thin stdio MCP server over the same deterministic package operations and JSON result contracts.
 
 ## Alignment Rule
 
@@ -64,14 +64,14 @@ The current package/CLI names remain the source of truth. The `input_fields` ent
 
 ## Access And Discovery
 
-The release-`0.1.1` MCP identity is:
+The MCP identity is:
 
 - registry name: `io.github.CE-RISE-software/dpawb`
 - OCI image pattern: `ghcr.io/ce-rise-software/dpawb-mcp:<release-version>`
 - official registry base: `https://registry.modelcontextprotocol.io/`
 - source metadata file: `server.json`
 
-Once the GitHub-mirror publication workflow succeeds, the server should be discoverable in the official MCP Registry by searching for `io.github.CE-RISE-software/dpawb`.
+The server is discoverable in the official MCP Registry by searching for `io.github.CE-RISE-software/dpawb`.
 
 Registry discovery page:
 
@@ -91,18 +91,9 @@ Minimal local client configuration:
 
 ## Packaging And Publication
 
-The MCP server is prepared for two runtime paths:
+The MCP server has two runtime paths:
 
 - local Python installation through the `dpawb` package
 - GitHub Container Registry image for MCP-oriented distribution from the GitHub mirror
 
-The repository includes placeholder MCP registry metadata in `server.json`. The publish workflow rewrites the release version and OCI image tag at publication time before uploading to the official MCP Registry with GitHub OIDC.
-
-## Non-Goals For 0.1.1
-
-The current MCP release does not add:
-
-- remote HTTP transport
-- MCP prompts or resources
-- non-deterministic summarization or AI interpretation
-- any second analytical contract separate from the package API
+The repository includes placeholder MCP registry metadata in `server.json`. The publish workflow writes the release version and OCI image tag before uploading to the official MCP Registry with GitHub OIDC.

@@ -2,6 +2,7 @@
 
 [![PyPI - Version](https://img.shields.io/pypi/v/dpawb)](https://pypi.org/project/dpawb/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19731237.svg)](https://doi.org/10.5281/zenodo.19731237)
+[![MCP Registry](https://img.shields.io/badge/MCP%20Registry-DPAWB%20MCP-0A7B83)](https://registry.modelcontextprotocol.io/?q=dpawb)
 
 <!-- mcp-name: io.github.CE-RISE-software/dpawb -->
 
@@ -20,9 +21,9 @@ This README is primarily a repository and development entry point. The user-faci
 - Synthetic local fixtures used only for tests and validation
 - A progression-based examples tree for human and AI-agent tutorials
 
-## Release-1 shape
+## Tool Shape
 
-The release-1 tool is designed primarily as an agent-usable analytical toolkit with a thin CLI. The core command surface is:
+The tool is designed primarily as an agent-usable analytical toolkit with a thin CLI. The core command surface is:
 
 - `assess`
 - `coverage`
@@ -44,7 +45,7 @@ The intended primary integration mode is an AI agent orchestrating the analytica
 
 The CLI remains useful for direct human invocation, but the main product shape is an analytical engine that can be called by agent skills, workflow runners, or tool adapters.
 
-Release `0.1.1` also ships a thin stdio MCP server over the same deterministic command surface:
+The package also ships a thin stdio MCP server over the same deterministic command surface:
 
 - `assess`
 - `coverage`
@@ -63,20 +64,20 @@ The MCP surface stays intentionally thin:
 - ship the MCP runtime as both a local Python entry point and a GitHub Container Registry image
 - publish registry metadata from the GitHub mirror
 
-The MCP runtime and publication shape are documented in [the published MCP server page](https://ce-rise-software.codeberg.page/dp-assessment-workbench/mcp-readiness.html).
+The MCP runtime and publication shape are documented in [the published MCP server page](https://ce-rise-software.codeberg.page/dp-assessment-workbench/mcp-server.html).
 
 The public Python API is documented in [the published API reference](https://ce-rise-software.codeberg.page/dp-assessment-workbench/api-reference.html).
 
 ## MCP Access
 
-The MCP server identity prepared for publication is:
+The MCP server is published with this identity:
 
 - registry name: `io.github.CE-RISE-software/dpawb`
 - OCI image pattern: `ghcr.io/ce-rise-software/dpawb-mcp:<release-version>`
 - transport: `stdio`
 - official registry base: `https://registry.modelcontextprotocol.io/`
 
-Once published from the GitHub mirror, the server should be discoverable in the official MCP Registry under the name `io.github.CE-RISE-software/dpawb`.
+The server is discoverable in the official MCP Registry under the name `io.github.CE-RISE-software/dpawb`.
 
 Registry discovery page:
 
@@ -94,7 +95,7 @@ Local client configuration example:
 }
 ```
 
-OCI-oriented registry metadata is declared in [`server.json`](server.json) and versioned by the publish workflow at release time.
+OCI-oriented registry metadata is declared in [`server.json`](server.json). The publish workflow fills in the release version and image tag when publishing.
 
 ## Install
 
@@ -351,8 +352,6 @@ The current analytical core is still conservative by design, but it now goes bey
 - `examples/03-reduced-use-case-comparison/`: self-contained aligned use-case comparison examples
 - `scripts/`: repo-native execution and test helpers
 - `.github/workflows/validate.yml` and `.forgejo/workflows/validate.yml`: CI validation via the repo-native path
-- `AGENTS.md`: project contract and release-1 decisions
-
 
 ## License
 

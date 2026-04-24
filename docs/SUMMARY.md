@@ -6,5 +6,5 @@
 - [API Reference](api-reference.md)
 - [Result Interpretation](result-interpretation.md)
 - [Example Applications](example-applications.md)
-- [MCP Server](mcp-readiness.md)
+- [MCP Server](mcp-server.md)
 - [Source Ingestion](source-ingestion.md)
