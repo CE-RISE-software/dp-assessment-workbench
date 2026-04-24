@@ -11,16 +11,6 @@ on:
         description: 'Released version to publish, without the leading v'
         required: true
         type: string
-      ref:
-        description: 'Git ref to publish from for manual runs'
-        required: false
-        default: 'main'
-        type: string
-      publish_registry_only:
-        description: 'Skip GHCR image build/push and publish only MCP registry metadata'
-        required: false
-        default: true
-        type: boolean
 
 jobs:
   publish-mcp:
@@ -33,18 +23,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.ref || github.ref }}
 
       - name: Set release variables
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "VERSION=${{ github.event.inputs.version }}" >> "$GITHUB_ENV"
+            VERSION="${{ github.event.inputs.version }}"
           else
-            echo "VERSION=${GITHUB_REF#refs/tags/v}" >> "$GITHUB_ENV"
+            VERSION="${GITHUB_REF#refs/tags/v}"
           fi
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
           echo "OWNER_LC=${GITHUB_REPOSITORY_OWNER,,}" >> "$GITHUB_ENV"
-          echo "IMAGE=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/dpawb-mcp:${{ github.event_name == 'workflow_dispatch' && github.event.inputs.version || github.ref_name }}" >> "$GITHUB_ENV"
+          echo "IMAGE=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/dpawb-mcp:${VERSION}" >> "$GITHUB_ENV"
 
       - name: Verify release package alignment
         run: |
@@ -80,7 +69,6 @@ jobs:
           mv server.json.tmp server.json
 
       - name: Log in to GHCR
-        if: ${{ github.event_name != 'workflow_dispatch' || !github.event.inputs.publish_registry_only }}
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -88,11 +76,9 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Docker Buildx
-        if: ${{ github.event_name != 'workflow_dispatch' || !github.event.inputs.publish_registry_only }}
         uses: docker/setup-buildx-action@v3
 
       - name: Build and push MCP image
-        if: ${{ github.event_name != 'workflow_dispatch' || !github.event.inputs.publish_registry_only }}
         uses: docker/build-push-action@v6
         with:
           context: .
