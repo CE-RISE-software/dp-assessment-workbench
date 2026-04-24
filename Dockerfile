@@ -6,7 +6,7 @@ LABEL org.opencontainers.image.title="dpawb MCP Server"
 LABEL org.opencontainers.image.description="Model Context Protocol server for the Digital Passport Model Assessment Workbench."
 LABEL org.opencontainers.image.source="https://github.com/CE-RISE-software/dp-assessment-workbench"
 LABEL org.opencontainers.image.version="${VERSION}"
-LABEL io.modelcontextprotocol.server.name="io.github.ce-rise-software/dpawb"
+LABEL io.modelcontextprotocol.server.name="io.github.CE-RISE-software/dpawb"
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
