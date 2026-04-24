@@ -18,7 +18,7 @@
     "Digital Material Passport",
     "Assessment Workbench"
   ],
-  "notes": "v0.1.0 -First full version of Digital Passport Model Assessment Workbench.",
+  "notes": "v0.1.1 - Addition of MCP server, deployment and registration.",
   "communities": [
     { "identifier": "ce-rise" },
     { "identifier": "impact" }
