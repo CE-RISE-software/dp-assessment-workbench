@@ -1,0 +1,89 @@
+name: Publish MCP
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+      - 'v*.*.*-*'
+
+jobs:
+  publish-mcp:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set release variables
+        run: |
+          echo "VERSION=${GITHUB_REF#refs/tags/v}" >> "$GITHUB_ENV"
+          echo "OWNER_LC=${GITHUB_REPOSITORY_OWNER,,}" >> "$GITHUB_ENV"
+
+      - name: Verify release metadata alignment
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import pathlib
+          import re
+          import tomllib
+
+          version = os.environ["VERSION"]
+          pyproject = tomllib.loads(pathlib.Path("pyproject.toml").read_text(encoding="utf-8"))
+          package_version = pyproject["project"]["version"]
+          package_name = pyproject["project"]["name"]
+          init_text = pathlib.Path("src/dpawb/__init__.py").read_text(encoding="utf-8")
+          match = re.search(r'__version__ = "([^"]+)"', init_text)
+          if not match:
+              raise SystemExit("Could not read src/dpawb/__init__.py version.")
+          init_version = match.group(1)
+          server = json.loads(pathlib.Path("server.json").read_text(encoding="utf-8"))
+          server_version = server["version"]
+          image_identifier = server["packages"][0]["identifier"]
+          expected_image = f"ghcr.io/{os.environ['OWNER_LC']}/dpawb-mcp:{version}"
+          if package_name != "dpawb":
+              raise SystemExit(f"Unexpected package name: {package_name}")
+          if len({version, package_version, init_version, server_version}) != 1:
+              raise SystemExit(
+                  f"Version mismatch: tag={version}, pyproject={package_version}, __init__={init_version}, server.json={server_version}"
+              )
+          if image_identifier != expected_image:
+              raise SystemExit(f"server.json image mismatch: {image_identifier} != {expected_image}")
+          print("Release metadata aligned.")
+          PY
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push MCP image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          build-args: |
+            VERSION=${{ env.VERSION }}
+          tags: |
+            ghcr.io/${{ env.OWNER_LC }}/dpawb-mcp:${{ env.VERSION }}
+
+      - name: Install mcp-publisher
+        run: |
+          curl -L "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
+          chmod +x mcp-publisher
+
+      - name: Authenticate to MCP Registry
+        run: ./mcp-publisher login github-oidc
+
+      - name: Publish to MCP Registry
+        run: ./mcp-publisher publish server.json

@@ -1,8 +1,13 @@
 # Changelog
 
-## 0.1.0
+## [0.1.1] - 2026-04-24
 
-First public release.
+### Added
+
+- Thin stdio MCP server `dpawb-mcp` aligned with the existing deterministic package and CLI operations
+- MCP publication assets for GitHub Container Registry and official MCP Registry release from the GitHub mirror
+
+## [0.1.0] - 2026-04-24
 
 ### Added
 

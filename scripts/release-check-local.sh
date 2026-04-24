@@ -35,6 +35,34 @@ python -m venv --system-site-packages "$VENV_DIR"
   --profile "$ROOT_DIR/fixtures/profiles/synthetic_evolution_latest.yaml" \
   --use-case "$ROOT_DIR/fixtures/use_cases/product_identity_lookup.yaml" >/dev/null
 
+"$VENV_DIR/bin/python" - <<'PY'
+from dpawb.mcp_server import McpServer
+
+server = McpServer()
+init_response = server.handle_message(
+    {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "initialize",
+        "params": {
+            "protocolVersion": "2025-06-18",
+            "capabilities": {},
+            "clientInfo": {"name": "release-check", "version": "0.0.0"},
+        },
+    }
+)
+assert init_response[0]["result"]["serverInfo"]["name"] == "dpawb-mcp"
+tool_response = server.handle_message(
+    {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "tools/call",
+        "params": {"name": "capabilities", "arguments": {}},
+    }
+)
+assert tool_response[0]["result"]["structuredContent"]["result_type"] == "capabilities_result"
+PY
+
 python - "$DIST_DIR" <<'PY'
 from pathlib import Path
 import sys

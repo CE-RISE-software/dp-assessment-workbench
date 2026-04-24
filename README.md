@@ -3,6 +3,8 @@
 [![PyPI - Version](https://img.shields.io/pypi/v/dpawb)](https://pypi.org/project/dpawb/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19731237.svg)](https://doi.org/10.5281/zenodo.19731237)
 
+<!-- mcp-name: io.github.ce-rise-software/dpawb -->
+
 A Python toolkit and thin CLI for SHACL-based assessment of digital passport data models, pairwise comparison of composed solutions, and SHACL-only use-case coverage analysis.
 
 This README is primarily a repository and development entry point. The user-facing conceptual and usage reference is at [the published documentation site](https://ce-rise-software.codeberg.page/dp-assessment-workbench/). The repository-source docs remain available in [`docs/`](docs/index.md).
@@ -12,6 +14,7 @@ This README is primarily a repository and development entry point. The user-faci
 ## What this repository contains
 
 - A publishable Python package with a CLI entry point: `dpawb`
+- A thin stdio MCP server entry point: `dpawb-mcp`
 - Contract-aligned input schemas for composition profiles, use cases, and alignments
 - Built-in vocabularies and templates exposed through discovery commands
 - Synthetic local fixtures used only for tests and validation
@@ -39,9 +42,9 @@ The intended primary integration mode is an AI agent orchestrating the analytica
 - JSON outputs suitable for agent parsing and chaining
 - explicit analytical steps instead of a chat-oriented interface
 
-The CLI remains useful for direct human invocation, but the main product shape is an analytical engine that can be called by agent skills, workflow runners, or future tool adapters.
+The CLI remains useful for direct human invocation, but the main product shape is an analytical engine that can be called by agent skills, workflow runners, or tool adapters.
 
-An MCP server is a sensible next integration step. The current command surface already maps cleanly to MCP-style tools such as:
+Release `0.1.1` also ships a thin stdio MCP server over the same deterministic command surface:
 
 - `assess`
 - `coverage`
@@ -53,16 +56,41 @@ An MCP server is a sensible next integration step. The current command surface a
 - `capabilities`
 - `summarize`
 
-So yes: this repository can reasonably grow toward a dedicated MCP server, containerized for Docker distribution and later publication in an MCP server registry. The clean approach is:
+The MCP surface stays intentionally thin:
 
 - keep `dpawb` as the core Python package
-- add a thin MCP server wrapper on top of the existing package API
-- ship that wrapper as a separate runtime entry point and Docker image
-- publish the MCP-facing metadata only after the tool contract is stable enough
+- expose the same operations through `dpawb-mcp`
+- ship the MCP runtime as both a local Python entry point and a GitHub Container Registry image
+- publish registry metadata from the GitHub mirror
 
-The current contract-level alignment for that future step is documented in [the published MCP readiness page](https://ce-rise-software.codeberg.page/dp-assessment-workbench/mcp-readiness.html).
+The MCP runtime and publication shape are documented in [the published MCP server page](https://ce-rise-software.codeberg.page/dp-assessment-workbench/mcp-readiness.html).
 
 The public Python API is documented in [the published API reference](https://ce-rise-software.codeberg.page/dp-assessment-workbench/api-reference.html).
+
+## MCP Access
+
+The MCP server identity prepared for publication is:
+
+- registry name: `io.github.ce-rise-software/dpawb`
+- OCI image: `ghcr.io/ce-rise-software/dpawb-mcp:0.1.1`
+- transport: `stdio`
+- official registry base: `https://registry.modelcontextprotocol.io/`
+
+Once published from the GitHub mirror, the server should be discoverable in the official MCP Registry under the name `io.github.ce-rise-software/dpawb`.
+
+Local client configuration example:
+
+```json
+{
+  "mcpServers": {
+    "dpawb": {
+      "command": "dpawb-mcp"
+    }
+  }
+}
+```
+
+OCI-oriented registry metadata is declared in [`server.json`](server.json).
 
 ## Install
 
@@ -76,6 +104,12 @@ Published package name:
 
 ```bash
 pip install dpawb
+```
+
+The installed MCP server command is:
+
+```bash
+dpawb-mcp
 ```
 
 If you are working in a restricted environment, the package is configured to build with `setuptools` so editable installs do not depend on fetching an extra build backend.
@@ -94,6 +128,12 @@ In constrained environments where editable installation is blocked by local Pyth
 make smoke
 make test
 make validate
+```
+
+Minimal local MCP runtime command:
+
+```bash
+python -m dpawb.mcp_server
 ```
 
 ## Example commands

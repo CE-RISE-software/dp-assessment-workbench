@@ -1,10 +1,10 @@
-# MCP Readiness
+# MCP Server
 
-Release `0.1.0` does not ship an MCP server, but the package and CLI are now aligned so a future MCP wrapper can stay thin.
+Release `0.1.1` ships a thin stdio MCP server over the same deterministic package operations and JSON result contracts.
 
 ## Alignment Rule
 
-The intended rule is:
+The implementation rule is:
 
 - one package API function
 - one CLI command
@@ -12,7 +12,7 @@ The intended rule is:
 
 with the same conceptual inputs and the same JSON result payload.
 
-## Current Mapping
+## Tool Mapping
 
 | Package API | CLI command | Future MCP tool | Result type |
 | --- | --- | --- | --- |
@@ -28,7 +28,7 @@ with the same conceptual inputs and the same JSON result payload.
 
 ## Result Contract
 
-The future MCP server should reuse the same result-envelope style already used by the package:
+The MCP server reuses the same result-envelope style already used by the package:
 
 - `result_type`
 - `inputs`
@@ -50,17 +50,55 @@ It now states, for each operation:
 - stable input-field descriptions
 - the emitted result type
 
-That means the future MCP wrapper should not need to invent a second command catalog.
+That means the MCP wrapper does not invent a second command catalog.
 
-The current package/CLI names remain the source of truth. The `input_fields` entries in `capabilities` are descriptive metadata for future agent tooling and MCP schema generation; they do not introduce a second invocation API.
+The current package/CLI names remain the source of truth. The `input_fields` entries in `capabilities` are descriptive metadata for agent tooling and MCP schema generation; they do not introduce a second invocation API.
 
-## Non-Goal For 0.1.0
+## Runtime Shape
 
-This repository is not yet committing to:
+- local Python entry point: `dpawb-mcp`
+- transport: stdio
+- message framing: newline-delimited JSON-RPC 2.0
+- exposed MCP capability: `tools`
+- current tool set: `assess`, `coverage`, `compare`, `prioritize`, `schema`, `vocabulary`, `template`, `capabilities`, `summarize`
 
-- an MCP server implementation
-- MCP transport/runtime details
-- Docker packaging for the MCP wrapper
-- MCP registry publication
+## Access And Discovery
 
-Those belong after the package contract is considered stable enough to expose directly.
+The release-`0.1.1` MCP identity is:
+
+- registry name: `io.github.ce-rise-software/dpawb`
+- OCI image: `ghcr.io/ce-rise-software/dpawb-mcp:0.1.1`
+- official registry base: `https://registry.modelcontextprotocol.io/`
+- source metadata file: `server.json`
+
+Once the GitHub-mirror publication workflow succeeds, the server should be discoverable in the official MCP Registry by searching for `io.github.ce-rise-software/dpawb`.
+
+Minimal local client configuration:
+
+```json
+{
+  "mcpServers": {
+    "dpawb": {
+      "command": "dpawb-mcp"
+    }
+  }
+}
+```
+
+## Packaging And Publication
+
+The MCP server is prepared for two runtime paths:
+
+- local Python installation through the `dpawb` package
+- GitHub Container Registry image for MCP-oriented distribution from the GitHub mirror
+
+The repository also includes `server.json` for official MCP Registry publication from GitHub Actions using GitHub OIDC.
+
+## Non-Goals For 0.1.1
+
+The current MCP release does not add:
+
+- remote HTTP transport
+- MCP prompts or resources
+- non-deterministic summarization or AI interpretation
+- any second analytical contract separate from the package API

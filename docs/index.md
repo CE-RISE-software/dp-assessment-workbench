@@ -62,7 +62,7 @@ Release 1 provides:
 - [API Reference](api-reference.md): Python package functions for humans, agents, and workflow runners.
 - [Result Interpretation](result-interpretation.md): how to read rich JSON outputs and the planned lightweight interpretation component.
 - [Example Applications](example-applications.md): tutorial-style analytical progression for humans and AI agents.
-- [MCP Readiness](mcp-readiness.md): package/CLI/MCP contract alignment.
+- [MCP Server](mcp-readiness.md): stdio MCP runtime, registry discovery, packaging, and publication shape.
 - [Source Ingestion](source-ingestion.md): first tutorial step for profile loading and live URL examples.
 
 ## Repository Validation
