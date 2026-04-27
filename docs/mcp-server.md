@@ -20,6 +20,7 @@ with the same conceptual inputs and the same JSON result payload.
 | `coverage` | `coverage` | `coverage` | `coverage_result` |
 | `compare` | `compare` | `compare` | `comparison_result` |
 | `prioritize` | `prioritize` | `prioritize` | `prioritization_result` |
+| `recommend_composition` | `recommend-composition` | `recommend_composition` | `composition_recommendation_result` |
 | `schema` | `schema` | `schema` | `schema_result` |
 | `vocabulary` | `vocabulary` | `vocabulary` | `vocabulary_result` |
 | `template` | `template` | `template` | `template_result` |
@@ -60,7 +61,7 @@ The current package/CLI names remain the source of truth. The `input_fields` ent
 - transport: stdio
 - message framing: newline-delimited JSON-RPC 2.0
 - exposed MCP capability: `tools`
-- current tool set: `assess`, `coverage`, `compare`, `prioritize`, `schema`, `vocabulary`, `template`, `capabilities`, `summarize`
+- current tool set: `assess`, `coverage`, `compare`, `prioritize`, `recommend_composition`, `schema`, `vocabulary`, `template`, `capabilities`, `summarize`
 
 ## Access And Discovery
 

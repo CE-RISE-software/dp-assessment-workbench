@@ -75,6 +75,21 @@ def _prioritization_points(document: dict[str, object]) -> list[str]:
     return points
 
 
+def _composition_recommendation_points(document: dict[str, object]) -> list[str]:
+    content = document.get("content", {})
+    profile = content.get("candidate_profile", {})
+    modules = content.get("module_recommendations", [])
+    entities = content.get("entity_recommendations", [])
+    review_items = content.get("review_items", [])
+    points = [
+        f"Recommended candidate profile is {profile.get('profile_id', 'unknown')}.",
+        f"{len(modules)} module recommendation(s) and {len(entities)} entity recommendation(s) were emitted.",
+    ]
+    if review_items:
+        points.append(f"{len(review_items)} deduplication review item(s) need inspection before implementation.")
+    return points
+
+
 def _assessment_points(document: dict[str, object]) -> list[str]:
     content = document.get("content", {})
     metrics = content.get("metrics", [])
@@ -101,6 +116,8 @@ def _points_for_document(document: dict[str, object]) -> list[str]:
         return _comparison_points(document)
     if result_type == "prioritization_result":
         return _prioritization_points(document)
+    if result_type == "composition_recommendation_result":
+        return _composition_recommendation_points(document)
     return [f"Unsupported result type for detailed summarization: {result_type}."]
 
 
@@ -111,6 +128,8 @@ def _headline(result_types: list[str], key_points: list[str]) -> str:
         return "Coverage and comparison results are available for interpretation."
     if "comparison_result" in result_types:
         return "Comparison results are available for interpretation."
+    if "composition_recommendation_result" in result_types:
+        return "Composition recommendation results are available for interpretation."
     if "assessment_result" in result_types:
         return "Assessment results are available for interpretation."
     return "Result documents were summarized."

@@ -4,7 +4,18 @@ import argparse
 import sys
 from pathlib import Path
 
-from dpawb.api import assess, capabilities, compare, coverage, prioritize, schema, summarize, template, vocabulary
+from dpawb.api import (
+    assess,
+    capabilities,
+    compare,
+    coverage,
+    prioritize,
+    recommend_composition,
+    schema,
+    summarize,
+    template,
+    vocabulary,
+)
 from dpawb.errors import DpawbError, InputError
 from dpawb.io import dump_json
 from dpawb.operations.summarize import render_markdown
@@ -50,6 +61,13 @@ def build_parser() -> argparse.ArgumentParser:
     prioritize_parser.add_argument("--coverage", nargs="*", default=[])
     prioritize_parser.add_argument("--output")
 
+    recommend_parser = subparsers.add_parser("recommend-composition")
+    recommend_parser.add_argument("--left", required=True)
+    recommend_parser.add_argument("--right", required=True)
+    recommend_parser.add_argument("--comparison")
+    recommend_parser.add_argument("--coverage", nargs="*", default=[])
+    recommend_parser.add_argument("--output")
+
     schema_parser = subparsers.add_parser("schema")
     schema_parser.add_argument(
         "name",
@@ -61,6 +79,7 @@ def build_parser() -> argparse.ArgumentParser:
             "coverage_result",
             "comparison_result",
             "prioritization_result",
+            "composition_recommendation_result",
             "summary_result",
         ],
     )
@@ -99,6 +118,8 @@ def main(argv: list[str] | None = None) -> int:
                 result = compare(args.left, args.right, args.alignment)
             case "prioritize":
                 result = prioritize(args.assessment, args.comparison, args.coverage)
+            case "recommend-composition":
+                result = recommend_composition(args.left, args.right, args.comparison, args.coverage)
             case "schema":
                 result = schema(args.name)
             case "vocabulary":

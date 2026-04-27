@@ -1,0 +1,176 @@
+{
+  "content": {
+    "overall_coverage_class": "representable",
+    "profile_id": "ce_rise_battery_product_identification_with_traceability_live",
+    "required_item_findings": [
+      {
+        "adequacy_note": "A matching property shape is anchored in a typed structured context that supports the expected structured value.",
+        "category": "classification",
+        "coverage_class": "representable",
+        "finding_id": "required_item_battery_category",
+        "required_item_id": "battery_category",
+        "supporting_trace": {
+          "label": "Battery category",
+          "matched_property_paths": [
+            "https://ce-rise-models.codeberg.page/product-profile/ce_marking_category_value",
+            "https://ce-rise-models.codeberg.page/product-profile/product_category_value"
+          ],
+          "matched_property_shapes": [
+            "nc29a448e6d9f4b8b961990b0df18f096b215",
+            "nc29a448e6d9f4b8b961990b0df18f096b214"
+          ],
+          "matched_reference_targets": [],
+          "owner_shapes": [
+            "https://ce-rise-models.codeberg.page/product-profile/regulatoryClassification"
+          ],
+          "owner_target_classes": [
+            "https://ce-rise-models.codeberg.page/product-profile/regulatoryClassification"
+          ]
+        }
+      },
+      {
+        "adequacy_note": "A matching property shape was found through SHACL path and shape tokens.",
+        "category": "identification",
+        "coverage_class": "representable",
+        "finding_id": "required_item_battery_identifier",
+        "required_item_id": "battery_identifier",
+        "supporting_trace": {
+          "label": "Battery identifier",
+          "matched_property_paths": [
+            "https://ce-rise-models.codeberg.page/product-profile/shipment_transaction_id_value",
+            "https://ce-rise-models.codeberg.page/product-profile/unique_product_identifier_value",
+            "https://ce-rise-models.codeberg.page/product-profile/unique_operator_identifier_value",
+            "https://ce-rise-models.codeberg.page/product-profile/customs_document_id_value"
+          ],
+          "matched_property_shapes": [
+            "nc29a448e6d9f4b8b961990b0df18f096b37",
+            "nc29a448e6d9f4b8b961990b0df18f096b228",
+            "nc29a448e6d9f4b8b961990b0df18f096b226",
+            "nc29a448e6d9f4b8b961990b0df18f096b16"
+          ],
+          "matched_reference_targets": [],
+          "owner_shapes": [
+            "https://ce-rise-models.codeberg.page/product-profile/customsDocumentation",
+            "https://ce-rise-models.codeberg.page/product-profile/importExportOperation",
+            "https://ce-rise-models.codeberg.page/product-profile/uniqueOperatorIdentifier",
+            "https://ce-rise-models.codeberg.page/product-profile/uniqueProductIdentifier"
+          ],
+          "owner_target_classes": [
+            "https://ce-rise-models.codeberg.page/product-profile/customsDocumentation",
+            "https://ce-rise-models.codeberg.page/product-profile/importExportOperation",
+            "https://ce-rise-models.codeberg.page/product-profile/uniqueOperatorIdentifier",
+            "https://ce-rise-models.codeberg.page/product-profile/uniqueProductIdentifier"
+          ]
+        }
+      },
+      {
+        "adequacy_note": "A matching property shape is anchored in a typed structured context that supports the expected structured value.",
+        "category": "actor",
+        "coverage_class": "representable",
+        "finding_id": "required_item_manufacturer_information",
+        "required_item_id": "manufacturer_information",
+        "supporting_trace": {
+          "label": "Manufacturer information",
+          "matched_property_paths": [
+            "https://ce-rise-models.codeberg.page/product-profile/unique_operator_identifier_value",
+            "https://ce-rise-models.codeberg.page/traceability-and-life-cycle-events/operator_identifier_value",
+            "https://ce-rise-models.codeberg.page/traceability-and-life-cycle-events/operator_identifier",
+            "https://ce-rise-models.codeberg.page/traceability-and-life-cycle-events/actor_identifier",
+            "https://ce-rise-models.codeberg.page/traceability-and-life-cycle-events/actor_identifier_value"
+          ],
+          "matched_property_shapes": [
+            "nc29a448e6d9f4b8b961990b0df18f096b226",
+            "n9bbf44180f3e4d238aff93b854a32eefb280",
+            "n9bbf44180f3e4d238aff93b854a32eefb266",
+            "n9bbf44180f3e4d238aff93b854a32eefb22",
+            "n9bbf44180f3e4d238aff93b854a32eefb20"
+          ],
+          "matched_reference_targets": [],
+          "owner_shapes": [
+            "https://ce-rise-models.codeberg.page/product-profile/uniqueOperatorIdentifier",
+            "https://ce-rise-models.codeberg.page/traceability-and-life-cycle-events/ActorTracking",
+            "https://ce-rise-models.codeberg.page/traceability-and-life-cycle-events/ValueAddingActivityLocation"
+          ],
+          "owner_target_classes": [
+            "https://ce-rise-models.codeberg.page/product-profile/uniqueOperatorIdentifier",
+            "https://ce-rise-models.codeberg.page/traceability-and-life-cycle-events/ActorTracking",
+            "https://ce-rise-models.codeberg.page/traceability-and-life-cycle-events/ValueAddingActivityLocation"
+          ]
+        }
+      },
+      {
+        "adequacy_note": "A matching property shape was found through SHACL path and shape tokens.",
+        "category": "passport_metadata",
+        "coverage_class": "representable",
+        "finding_id": "required_item_passport_identifier",
+        "required_item_id": "passport_identifier",
+        "supporting_trace": {
+          "label": "Passport identifier",
+          "matched_property_paths": [
+            "https://ce-rise-models.codeberg.page/dp-record-metadata/related_passport_id"
+          ],
+          "matched_property_shapes": [
+            "nb9f94944b67f455c803b03712481ffe2b37"
+          ],
+          "matched_reference_targets": [],
+          "owner_shapes": [
+            "https://ce-rise-models.codeberg.page/dp-record-metadata/RelatedPassport"
+          ],
+          "owner_target_classes": [
+            "https://ce-rise-models.codeberg.page/dp-record-metadata/RelatedPassport"
+          ]
+        }
+      }
+    ],
+    "required_join_findings": [
+      {
+        "adequacy_note": "Both endpoint items appear retrievable from a shared record-level context.",
+        "coverage_class": "representable",
+        "finding_id": "required_join_battery_to_category",
+        "required_join_id": "battery_to_category",
+        "supporting_trace": {
+          "from_item": "battery_identifier",
+          "join_kind": "reference",
+          "shared_owner_shapes": [],
+          "to_item": "battery_category"
+        }
+      },
+      {
+        "adequacy_note": "Both endpoint items are represented on a shared node shape.",
+        "coverage_class": "representable",
+        "finding_id": "required_join_battery_to_manufacturer",
+        "required_join_id": "battery_to_manufacturer",
+        "supporting_trace": {
+          "from_item": "battery_identifier",
+          "join_kind": "responsibility",
+          "shared_owner_shapes": [
+            "https://ce-rise-models.codeberg.page/product-profile/uniqueOperatorIdentifier"
+          ],
+          "to_item": "manufacturer_information"
+        }
+      }
+    ],
+    "source_references": {
+      "model_sources": [
+        "https://ce-rise-models.codeberg.page/dp-record-metadata/shacl.ttl",
+        "https://ce-rise-models.codeberg.page/product-profile/shacl.ttl",
+        "https://ce-rise-models.codeberg.page/traceability-and-life-cycle-events/shacl.ttl"
+      ],
+      "profile_path": "examples/05-composition-recommendation/profiles/left_profile.yaml",
+      "use_case_path": "examples/05-composition-recommendation/use_cases/use_case.yaml"
+    },
+    "use_case_id": "battery_product_identification"
+  },
+  "diagnostics": [
+    {
+      "level": "info",
+      "message": "Coverage matching uses SHACL property-path tokens and owner node-shape evidence for release-1 representability decisions."
+    }
+  ],
+  "inputs": {
+    "comparison_scope_label": "battery_product_identification",
+    "profile_id": "ce_rise_battery_product_identification_with_traceability_live",
+    "use_case_id": "battery_product_identification"
+  },
+  "result_type": "coverage_result"
+}

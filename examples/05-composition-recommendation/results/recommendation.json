@@ -1,0 +1,244 @@
+{
+  "content": {
+    "candidate_profile": {
+      "comparison_scope_label": "battery_product_identification",
+      "label": "Recommended combined profile for ce_rise_battery_product_identification_with_traceability_live and batterypass_battery_product_identification",
+      "models": [
+        {
+          "model_id": "traceability_life_cycle_events",
+          "source": "https://ce-rise-models.codeberg.page/traceability-and-life-cycle-events/shacl.ttl"
+        },
+        {
+          "model_id": "product_profile",
+          "source": "https://ce-rise-models.codeberg.page/product-profile/shacl.ttl"
+        },
+        {
+          "model_id": "dp_record_metadata",
+          "source": "https://ce-rise-models.codeberg.page/dp-record-metadata/shacl.ttl"
+        },
+        {
+          "model_id": "general_product_information",
+          "model_version": "1.2.0",
+          "source": "./examples/05-composition-recommendation/models/general_product_information_1_2_0.shacl.ttl"
+        }
+      ],
+      "profile_id": "recommended_ce_rise_battery_product_identification_with_traceability_live_batterypass_battery_product_identification",
+      "profile_version": "recommended"
+    },
+    "coverage_summaries": {
+      "batterypass_battery_product_identification": {
+        "coverage_class_counts": {
+          "representable": 6
+        },
+        "coverage_score": 18,
+        "coverage_score_ratio": 1.0,
+        "finding_count": 6,
+        "maximum_coverage_score": 18,
+        "overall_coverage_class": "representable",
+        "profile_id": "batterypass_battery_product_identification",
+        "use_case_id": "battery_product_identification"
+      },
+      "ce_rise_battery_product_identification_with_traceability_live": {
+        "coverage_class_counts": {
+          "representable": 6
+        },
+        "coverage_score": 18,
+        "coverage_score_ratio": 1.0,
+        "finding_count": 6,
+        "maximum_coverage_score": 18,
+        "overall_coverage_class": "representable",
+        "profile_id": "ce_rise_battery_product_identification_with_traceability_live",
+        "use_case_id": "battery_product_identification"
+      }
+    },
+    "entity_recommendations": [
+      {
+        "entity_kind": "property",
+        "left_iri": "https://ce-rise-models.codeberg.page/product-profile/product_category_value",
+        "match_id": "battery_category_property",
+        "pair_status": "matched",
+        "preferred_side": "left",
+        "rationale": "Declared equivalent entities are present on both sides; keep the left side as canonical unless domain review shows that the other side carries required detail.",
+        "recommended_action": "deduplicate",
+        "right_iri": "https://batterypass.example.org/general-product-information/batteryCategory"
+      },
+      {
+        "entity_kind": "property",
+        "left_iri": "https://ce-rise-models.codeberg.page/product-profile/unique_operator_identifier_value",
+        "match_id": "manufacturer_identifier_property",
+        "pair_status": "matched",
+        "preferred_side": "left",
+        "rationale": "Declared equivalent entities are present on both sides; keep the left side as canonical unless domain review shows that the other side carries required detail.",
+        "recommended_action": "deduplicate",
+        "right_iri": "https://batterypass.example.org/general-product-information/identifier"
+      },
+      {
+        "entity_kind": "property",
+        "left_iri": "https://ce-rise-models.codeberg.page/dp-record-metadata/related_passport_id",
+        "match_id": "passport_identifier_property",
+        "pair_status": "matched",
+        "preferred_side": "left",
+        "rationale": "Declared equivalent entities are present on both sides; keep the left side as canonical unless domain review shows that the other side carries required detail.",
+        "recommended_action": "deduplicate",
+        "right_iri": "https://batterypass.example.org/general-product-information/batteryPassportIdentifier"
+      },
+      {
+        "entity_kind": "property",
+        "left_iri": "https://ce-rise-models.codeberg.page/product-profile/unique_product_identifier_value",
+        "match_id": "product_identifier_property",
+        "pair_status": "matched",
+        "preferred_side": "left",
+        "rationale": "Declared equivalent entities are present on both sides; keep the left side as canonical unless domain review shows that the other side carries required detail.",
+        "recommended_action": "deduplicate",
+        "right_iri": "https://batterypass.example.org/general-product-information/productIdentifier"
+      }
+    ],
+    "module_recommendations": [
+      {
+        "action": "include",
+        "model_id": "traceability_life_cycle_events",
+        "model_version": null,
+        "rationale": "Included to preserve declared model-scope coverage and structural detail in the combined profile.",
+        "selection_score": 240.0,
+        "side": "left",
+        "source": "https://ce-rise-models.codeberg.page/traceability-and-life-cycle-events/shacl.ttl",
+        "trace": {
+          "node_shape_count": 15,
+          "property_shape_count": 224,
+          "source_documents": [
+            "https://ce-rise-models.codeberg.page/traceability-and-life-cycle-events/shacl.ttl"
+          ]
+        }
+      },
+      {
+        "action": "include",
+        "model_id": "product_profile",
+        "model_version": null,
+        "rationale": "Included to preserve declared model-scope coverage and structural detail in the combined profile.",
+        "selection_score": 99.0,
+        "side": "left",
+        "source": "https://ce-rise-models.codeberg.page/product-profile/shacl.ttl",
+        "trace": {
+          "node_shape_count": 32,
+          "property_shape_count": 66,
+          "source_documents": [
+            "https://ce-rise-models.codeberg.page/product-profile/shacl.ttl"
+          ]
+        }
+      },
+      {
+        "action": "include",
+        "model_id": "dp_record_metadata",
+        "model_version": null,
+        "rationale": "Included to preserve declared model-scope coverage and structural detail in the combined profile.",
+        "selection_score": 45.0,
+        "side": "left",
+        "source": "https://ce-rise-models.codeberg.page/dp-record-metadata/shacl.ttl",
+        "trace": {
+          "node_shape_count": 7,
+          "property_shape_count": 37,
+          "source_documents": [
+            "https://ce-rise-models.codeberg.page/dp-record-metadata/shacl.ttl"
+          ]
+        }
+      },
+      {
+        "action": "include",
+        "model_id": "general_product_information",
+        "model_version": "1.2.0",
+        "rationale": "Included to preserve declared model-scope coverage and structural detail in the combined profile.",
+        "selection_score": 9.0,
+        "side": "right",
+        "source": "./examples/05-composition-recommendation/models/general_product_information_1_2_0.shacl.ttl",
+        "trace": {
+          "node_shape_count": 2,
+          "property_shape_count": 6,
+          "source_documents": [
+            "./examples/05-composition-recommendation/models/general_product_information_1_2_0.shacl.ttl"
+          ]
+        }
+      }
+    ],
+    "preferred_side_for_duplicate_entities": "left",
+    "recommendation_strategy": "maximize_declared_coverage_and_structural_detail_with_alignment_deduplication",
+    "review_items": [
+      {
+        "message": "Review declared equivalent entity pair battery_category_property before implementing the combined model.",
+        "review_id": "deduplication_1",
+        "review_type": "deduplication",
+        "trace": {
+          "entity_kind": "property",
+          "left_iri": "https://ce-rise-models.codeberg.page/product-profile/product_category_value",
+          "match_id": "battery_category_property",
+          "pair_status": "matched",
+          "preferred_side": "left",
+          "rationale": "Declared equivalent entities are present on both sides; keep the left side as canonical unless domain review shows that the other side carries required detail.",
+          "recommended_action": "deduplicate",
+          "right_iri": "https://batterypass.example.org/general-product-information/batteryCategory"
+        }
+      },
+      {
+        "message": "Review declared equivalent entity pair manufacturer_identifier_property before implementing the combined model.",
+        "review_id": "deduplication_2",
+        "review_type": "deduplication",
+        "trace": {
+          "entity_kind": "property",
+          "left_iri": "https://ce-rise-models.codeberg.page/product-profile/unique_operator_identifier_value",
+          "match_id": "manufacturer_identifier_property",
+          "pair_status": "matched",
+          "preferred_side": "left",
+          "rationale": "Declared equivalent entities are present on both sides; keep the left side as canonical unless domain review shows that the other side carries required detail.",
+          "recommended_action": "deduplicate",
+          "right_iri": "https://batterypass.example.org/general-product-information/identifier"
+        }
+      },
+      {
+        "message": "Review declared equivalent entity pair passport_identifier_property before implementing the combined model.",
+        "review_id": "deduplication_3",
+        "review_type": "deduplication",
+        "trace": {
+          "entity_kind": "property",
+          "left_iri": "https://ce-rise-models.codeberg.page/dp-record-metadata/related_passport_id",
+          "match_id": "passport_identifier_property",
+          "pair_status": "matched",
+          "preferred_side": "left",
+          "rationale": "Declared equivalent entities are present on both sides; keep the left side as canonical unless domain review shows that the other side carries required detail.",
+          "recommended_action": "deduplicate",
+          "right_iri": "https://batterypass.example.org/general-product-information/batteryPassportIdentifier"
+        }
+      },
+      {
+        "message": "Review declared equivalent entity pair product_identifier_property before implementing the combined model.",
+        "review_id": "deduplication_4",
+        "review_type": "deduplication",
+        "trace": {
+          "entity_kind": "property",
+          "left_iri": "https://ce-rise-models.codeberg.page/product-profile/unique_product_identifier_value",
+          "match_id": "product_identifier_property",
+          "pair_status": "matched",
+          "preferred_side": "left",
+          "rationale": "Declared equivalent entities are present on both sides; keep the left side as canonical unless domain review shows that the other side carries required detail.",
+          "recommended_action": "deduplicate",
+          "right_iri": "https://batterypass.example.org/general-product-information/productIdentifier"
+        }
+      }
+    ]
+  },
+  "diagnostics": [
+    {
+      "level": "info",
+      "message": "Recommendation is deterministic and does not rewrite SHACL; it emits a proposed profile and review decisions."
+    }
+  ],
+  "inputs": {
+    "comparison_path": "examples/05-composition-recommendation/results/comparison.json",
+    "comparison_scope_label": "battery_product_identification",
+    "coverage_paths": [
+      "examples/05-composition-recommendation/results/left_coverage.json",
+      "examples/05-composition-recommendation/results/right_coverage.json"
+    ],
+    "left_assessment_path": "examples/05-composition-recommendation/results/left_assessment.json",
+    "right_assessment_path": "examples/05-composition-recommendation/results/right_assessment.json"
+  },
+  "result_type": "composition_recommendation_result"
+}

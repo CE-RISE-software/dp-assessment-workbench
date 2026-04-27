@@ -29,6 +29,7 @@ python -m venv --system-site-packages "$VENV_DIR"
 "$VENV_DIR/bin/python" -m pip install --no-deps "$DIST_DIR"/*.whl >/dev/null
 
 "$VENV_DIR/bin/dpawb" capabilities >/dev/null
+"$VENV_DIR/bin/dpawb" schema composition_recommendation_result >/dev/null
 "$VENV_DIR/bin/dpawb" assess \
   --profile "$ROOT_DIR/fixtures/profiles/synthetic_evolution_latest.yaml" >/dev/null
 "$VENV_DIR/bin/dpawb" coverage \

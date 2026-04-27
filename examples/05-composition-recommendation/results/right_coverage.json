@@ -1,0 +1,148 @@
+{
+  "content": {
+    "overall_coverage_class": "representable",
+    "profile_id": "batterypass_battery_product_identification",
+    "required_item_findings": [
+      {
+        "adequacy_note": "A matching property shape is anchored in a typed structured context that supports the expected structured value.",
+        "category": "classification",
+        "coverage_class": "representable",
+        "finding_id": "required_item_battery_category",
+        "required_item_id": "battery_category",
+        "supporting_trace": {
+          "label": "Battery category",
+          "matched_property_paths": [
+            "https://batterypass.example.org/general-product-information/batteryCategory"
+          ],
+          "matched_property_shapes": [
+            "https://batterypass.example.org/general-product-information/battery_category_property"
+          ],
+          "matched_reference_targets": [],
+          "owner_shapes": [
+            "https://batterypass.example.org/general-product-information/GeneralProductInformationShape"
+          ],
+          "owner_target_classes": [
+            "https://batterypass.example.org/general-product-information/GeneralProductInformation"
+          ]
+        }
+      },
+      {
+        "adequacy_note": "A matching property shape was found through SHACL path and shape tokens.",
+        "category": "identification",
+        "coverage_class": "representable",
+        "finding_id": "required_item_battery_identifier",
+        "required_item_id": "battery_identifier",
+        "supporting_trace": {
+          "label": "Battery identifier",
+          "matched_property_paths": [
+            "https://batterypass.example.org/general-product-information/batteryPassportIdentifier"
+          ],
+          "matched_property_shapes": [
+            "https://batterypass.example.org/general-product-information/battery_passport_identifier_property"
+          ],
+          "matched_reference_targets": [],
+          "owner_shapes": [
+            "https://batterypass.example.org/general-product-information/GeneralProductInformationShape"
+          ],
+          "owner_target_classes": [
+            "https://batterypass.example.org/general-product-information/GeneralProductInformation"
+          ]
+        }
+      },
+      {
+        "adequacy_note": "A matching property shape is anchored in a typed structured context that supports the expected structured value.",
+        "category": "actor",
+        "coverage_class": "representable",
+        "finding_id": "required_item_manufacturer_information",
+        "required_item_id": "manufacturer_information",
+        "supporting_trace": {
+          "label": "Manufacturer information",
+          "matched_property_paths": [
+            "https://batterypass.example.org/general-product-information/identifier"
+          ],
+          "matched_property_shapes": [
+            "https://batterypass.example.org/general-product-information/manufacturer_identifier_property"
+          ],
+          "matched_reference_targets": [],
+          "owner_shapes": [
+            "https://batterypass.example.org/general-product-information/ContactInformationShape"
+          ],
+          "owner_target_classes": [
+            "https://batterypass.example.org/general-product-information/ContactInformation"
+          ]
+        }
+      },
+      {
+        "adequacy_note": "A matching property shape was found through SHACL path and shape tokens.",
+        "category": "passport_metadata",
+        "coverage_class": "representable",
+        "finding_id": "required_item_passport_identifier",
+        "required_item_id": "passport_identifier",
+        "supporting_trace": {
+          "label": "Passport identifier",
+          "matched_property_paths": [
+            "https://batterypass.example.org/general-product-information/batteryPassportIdentifier"
+          ],
+          "matched_property_shapes": [
+            "https://batterypass.example.org/general-product-information/battery_passport_identifier_property"
+          ],
+          "matched_reference_targets": [],
+          "owner_shapes": [
+            "https://batterypass.example.org/general-product-information/GeneralProductInformationShape"
+          ],
+          "owner_target_classes": [
+            "https://batterypass.example.org/general-product-information/GeneralProductInformation"
+          ]
+        }
+      }
+    ],
+    "required_join_findings": [
+      {
+        "adequacy_note": "Both endpoint items are represented on a shared node shape.",
+        "coverage_class": "representable",
+        "finding_id": "required_join_battery_to_category",
+        "required_join_id": "battery_to_category",
+        "supporting_trace": {
+          "from_item": "battery_identifier",
+          "join_kind": "reference",
+          "shared_owner_shapes": [
+            "https://batterypass.example.org/general-product-information/GeneralProductInformationShape"
+          ],
+          "to_item": "battery_category"
+        }
+      },
+      {
+        "adequacy_note": "Both endpoint items are connected through an explicit object-reference path between matched owner shapes.",
+        "coverage_class": "representable",
+        "finding_id": "required_join_battery_to_manufacturer",
+        "required_join_id": "battery_to_manufacturer",
+        "supporting_trace": {
+          "from_item": "battery_identifier",
+          "join_kind": "responsibility",
+          "shared_owner_shapes": [],
+          "to_item": "manufacturer_information"
+        }
+      }
+    ],
+    "source_references": {
+      "model_sources": [
+        "./examples/05-composition-recommendation/models/general_product_information_1_2_0.shacl.ttl"
+      ],
+      "profile_path": "examples/05-composition-recommendation/profiles/right_profile.yaml",
+      "use_case_path": "examples/05-composition-recommendation/use_cases/use_case.yaml"
+    },
+    "use_case_id": "battery_product_identification"
+  },
+  "diagnostics": [
+    {
+      "level": "info",
+      "message": "Coverage matching uses SHACL property-path tokens and owner node-shape evidence for release-1 representability decisions."
+    }
+  ],
+  "inputs": {
+    "comparison_scope_label": "battery_product_identification",
+    "profile_id": "batterypass_battery_product_identification",
+    "use_case_id": "battery_product_identification"
+  },
+  "result_type": "coverage_result"
+}

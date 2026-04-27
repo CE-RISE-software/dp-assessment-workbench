@@ -51,6 +51,7 @@ class McpServerTests(unittest.TestCase):
         names = [tool["name"] for tool in tools]
         self.assertIn("assess", names)
         self.assertIn("summarize", names)
+        self.assertIn("recommend_composition", names)
 
     def test_tools_call_returns_structured_result(self) -> None:
         self._initialize()

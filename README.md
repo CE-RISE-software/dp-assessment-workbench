@@ -29,6 +29,7 @@ The tool is designed primarily as an agent-usable analytical toolkit with a thin
 - `coverage`
 - `compare`
 - `prioritize`
+- `recommend-composition`
 - `schema`
 - `vocabulary`
 - `template`
@@ -51,6 +52,7 @@ The package also ships a thin stdio MCP server over the same deterministic comma
 - `coverage`
 - `compare`
 - `prioritize`
+- `recommend-composition`
 - `schema`
 - `vocabulary`
 - `template`
@@ -147,6 +149,7 @@ python -m dpawb.mcp_server
 dpawb assess --profile fixtures/profiles/synthetic_evolution_latest.yaml
 dpawb coverage --profile fixtures/profiles/synthetic_evolution_latest.yaml --use-case fixtures/use_cases/product_identity_lookup.yaml
 dpawb compare --left left_assessment.json --right right_assessment.json
+dpawb recommend-composition --left left_assessment.json --right right_assessment.json --comparison comparison_result.json
 dpawb summarize --result comparison_result.json --format markdown
 dpawb capabilities
 ```
@@ -183,6 +186,8 @@ The full examples tree is organized by analytical task, not by input data model:
   Run the first aligned use-case comparison.
 - `examples/04-extended-use-case-comparison/`
   Run a broader aligned use-case comparison.
+- `examples/05-composition-recommendation/`
+  Recommend a combined profile from two assessed model sets.
 
 Each example is usable by humans as a step-by-step command tutorial and by AI agents as a deterministic recipe over explicit files.
 
@@ -350,6 +355,7 @@ The current analytical core is still conservative by design, but it now goes bey
 - `fixtures/`: synthetic repository-local models, profiles, use cases, and alignments for tests only
 - `examples/01-source-ingestion/`: source-ingestion profiles, use cases, and alignments for manual runs
 - `examples/03-reduced-use-case-comparison/`: self-contained aligned use-case comparison examples
+- `examples/05-composition-recommendation/`: self-contained composition recommendation example
 - `scripts/`: repo-native execution and test helpers
 - `.github/workflows/validate.yml` and `.forgejo/workflows/validate.yml`: CI validation via the repo-native path
 

@@ -1,0 +1,664 @@
+{
+  "content": {
+    "alignment": {
+      "alignment_aware_comparison": {
+        "alignment_coverage_ratio": 1.0,
+        "evaluated_pairs": [
+          {
+            "entity_kind": "property",
+            "left_iri": "https://ce-rise-models.codeberg.page/dp-record-metadata/related_passport_id",
+            "left_present": true,
+            "match_id": "passport_identifier_property",
+            "pair_status": "matched",
+            "right_iri": "https://batterypass.example.org/general-product-information/batteryPassportIdentifier",
+            "right_present": true
+          },
+          {
+            "entity_kind": "property",
+            "left_iri": "https://ce-rise-models.codeberg.page/product-profile/unique_product_identifier_value",
+            "left_present": true,
+            "match_id": "product_identifier_property",
+            "pair_status": "matched",
+            "right_iri": "https://batterypass.example.org/general-product-information/productIdentifier",
+            "right_present": true
+          },
+          {
+            "entity_kind": "property",
+            "left_iri": "https://ce-rise-models.codeberg.page/product-profile/product_category_value",
+            "left_present": true,
+            "match_id": "battery_category_property",
+            "pair_status": "matched",
+            "right_iri": "https://batterypass.example.org/general-product-information/batteryCategory",
+            "right_present": true
+          },
+          {
+            "entity_kind": "property",
+            "left_iri": "https://ce-rise-models.codeberg.page/product-profile/unique_operator_identifier_value",
+            "left_present": true,
+            "match_id": "manufacturer_identifier_property",
+            "pair_status": "matched",
+            "right_iri": "https://batterypass.example.org/general-product-information/identifier",
+            "right_present": true
+          }
+        ],
+        "left_present_count": 4,
+        "matched_pair_count": 4,
+        "ranked_alignment_observations": [],
+        "right_present_count": 4,
+        "status": "declared_alignment_evaluated"
+      },
+      "alignment_id": "battery_product_identification_ce_rise_alignment",
+      "comparison_scope_label": "battery_product_identification",
+      "equivalence_count": 4
+    },
+    "structural_comparison": {
+      "metric_deltas": [
+        {
+          "delta": 0.08868501529051986,
+          "kind": "share",
+          "left_value": 0.9113149847094801,
+          "metric_id": "cardinality_bounded_property_share",
+          "normalized_delta_score": 0.08868501529051986,
+          "right_value": 1.0
+        },
+        {
+          "delta": -0.4602446483180427,
+          "kind": "density",
+          "left_value": 2.9602446483180427,
+          "metric_id": "constraint_density",
+          "normalized_delta_score": 0.4602446483180427,
+          "right_value": 2.5
+        },
+        {
+          "delta": 0.0,
+          "kind": "count",
+          "left_value": 0.0,
+          "metric_id": "cross_module_reference_count",
+          "normalized_delta_score": 0.0,
+          "right_value": 0.0
+        },
+        {
+          "delta": 0.0,
+          "kind": "share",
+          "left_value": 0.0,
+          "metric_id": "cross_module_reference_share",
+          "normalized_delta_score": 0.0,
+          "right_value": 0.0
+        },
+        {
+          "delta": -54.0,
+          "kind": "count",
+          "left_value": 54.0,
+          "metric_id": "number_of_closed_shapes",
+          "normalized_delta_score": 1.0,
+          "right_value": 0.0
+        },
+        {
+          "delta": -291.0,
+          "kind": "count",
+          "left_value": 296.0,
+          "metric_id": "number_of_datatype_constrained_properties",
+          "normalized_delta_score": 0.9831081081081081,
+          "right_value": 5.0
+        },
+        {
+          "delta": -19.0,
+          "kind": "count",
+          "left_value": 20.0,
+          "metric_id": "number_of_object_reference_properties",
+          "normalized_delta_score": 0.95,
+          "right_value": 1.0
+        },
+        {
+          "delta": -321.0,
+          "kind": "count",
+          "left_value": 327.0,
+          "metric_id": "number_of_property_shapes",
+          "normalized_delta_score": 0.981651376146789,
+          "right_value": 6.0
+        },
+        {
+          "delta": -52.0,
+          "kind": "count",
+          "left_value": 54.0,
+          "metric_id": "number_of_shapes",
+          "normalized_delta_score": 0.9629629629629629,
+          "right_value": 2.0
+        },
+        {
+          "delta": -52.0,
+          "kind": "count",
+          "left_value": 54.0,
+          "metric_id": "number_of_target_declarations",
+          "normalized_delta_score": 0.9629629629629629,
+          "right_value": 2.0
+        },
+        {
+          "delta": 0.0,
+          "kind": "share",
+          "left_value": 0.0,
+          "metric_id": "open_property_share",
+          "normalized_delta_score": 0.0,
+          "right_value": 0.0
+        },
+        {
+          "delta": -26.0,
+          "kind": "count",
+          "left_value": 26.0,
+          "metric_id": "shared_vocabulary_overlap_count",
+          "normalized_delta_score": 1.0,
+          "right_value": 0.0
+        },
+        {
+          "delta": -0.06516290726817042,
+          "kind": "share",
+          "left_value": 0.06516290726817042,
+          "metric_id": "shared_vocabulary_overlap_ratio",
+          "normalized_delta_score": 0.06516290726817042,
+          "right_value": 0.0
+        },
+        {
+          "delta": 0.033639143730886834,
+          "kind": "share",
+          "left_value": 0.9663608562691132,
+          "metric_id": "typed_property_share",
+          "normalized_delta_score": 0.033639143730886834,
+          "right_value": 1.0
+        }
+      ],
+      "ranked_observations": [
+        {
+          "delta": -0.4602446483180427,
+          "kind": "density",
+          "message": "constraint_density decreased by 0.4602446483180427, suggesting weaker explicitness.",
+          "metric_id": "constraint_density",
+          "module_context": {
+            "change_basis": "node_shape_count_and_property_shape_count",
+            "metric_focus": "overall_change",
+            "top_changed_modules": [
+              {
+                "change_magnitude": 239,
+                "left_node_shape_count": 15,
+                "left_property_shape_count": 224,
+                "model_id": "traceability_life_cycle_events",
+                "node_shape_delta": -15,
+                "property_shape_delta": -224,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 98,
+                "left_node_shape_count": 32,
+                "left_property_shape_count": 66,
+                "model_id": "product_profile",
+                "node_shape_delta": -32,
+                "property_shape_delta": -66,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 44,
+                "left_node_shape_count": 7,
+                "left_property_shape_count": 37,
+                "model_id": "dp_record_metadata",
+                "node_shape_delta": -7,
+                "property_shape_delta": -37,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              }
+            ]
+          },
+          "normalized_delta_score": 0.4602446483180427,
+          "observation_id": "metric_delta_1"
+        },
+        {
+          "delta": 0.08868501529051986,
+          "kind": "share",
+          "message": "cardinality_bounded_property_share increased by 0.08868501529051986, suggesting stronger explicitness.",
+          "metric_id": "cardinality_bounded_property_share",
+          "module_context": {
+            "change_basis": "node_shape_count_and_property_shape_count",
+            "metric_focus": "property_shape_count",
+            "top_changed_modules": [
+              {
+                "change_magnitude": 239,
+                "left_node_shape_count": 15,
+                "left_property_shape_count": 224,
+                "model_id": "traceability_life_cycle_events",
+                "node_shape_delta": -15,
+                "property_shape_delta": -224,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 98,
+                "left_node_shape_count": 32,
+                "left_property_shape_count": 66,
+                "model_id": "product_profile",
+                "node_shape_delta": -32,
+                "property_shape_delta": -66,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 44,
+                "left_node_shape_count": 7,
+                "left_property_shape_count": 37,
+                "model_id": "dp_record_metadata",
+                "node_shape_delta": -7,
+                "property_shape_delta": -37,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              }
+            ]
+          },
+          "normalized_delta_score": 0.08868501529051986,
+          "observation_id": "metric_delta_2"
+        },
+        {
+          "delta": -0.06516290726817042,
+          "kind": "share",
+          "message": "shared_vocabulary_overlap_ratio decreased by 0.06516290726817042, suggesting less vocabulary reuse.",
+          "metric_id": "shared_vocabulary_overlap_ratio",
+          "module_context": {
+            "change_basis": "node_shape_count_and_property_shape_count",
+            "metric_focus": "overall_change",
+            "top_changed_modules": [
+              {
+                "change_magnitude": 239,
+                "left_node_shape_count": 15,
+                "left_property_shape_count": 224,
+                "model_id": "traceability_life_cycle_events",
+                "node_shape_delta": -15,
+                "property_shape_delta": -224,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 98,
+                "left_node_shape_count": 32,
+                "left_property_shape_count": 66,
+                "model_id": "product_profile",
+                "node_shape_delta": -32,
+                "property_shape_delta": -66,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 44,
+                "left_node_shape_count": 7,
+                "left_property_shape_count": 37,
+                "model_id": "dp_record_metadata",
+                "node_shape_delta": -7,
+                "property_shape_delta": -37,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              }
+            ]
+          },
+          "normalized_delta_score": 0.06516290726817042,
+          "observation_id": "metric_delta_3"
+        },
+        {
+          "delta": 0.033639143730886834,
+          "kind": "share",
+          "message": "typed_property_share increased by 0.033639143730886834, suggesting stronger explicitness.",
+          "metric_id": "typed_property_share",
+          "module_context": {
+            "change_basis": "node_shape_count_and_property_shape_count",
+            "metric_focus": "property_shape_count",
+            "top_changed_modules": [
+              {
+                "change_magnitude": 239,
+                "left_node_shape_count": 15,
+                "left_property_shape_count": 224,
+                "model_id": "traceability_life_cycle_events",
+                "node_shape_delta": -15,
+                "property_shape_delta": -224,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 98,
+                "left_node_shape_count": 32,
+                "left_property_shape_count": 66,
+                "model_id": "product_profile",
+                "node_shape_delta": -32,
+                "property_shape_delta": -66,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 44,
+                "left_node_shape_count": 7,
+                "left_property_shape_count": 37,
+                "model_id": "dp_record_metadata",
+                "node_shape_delta": -7,
+                "property_shape_delta": -37,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              }
+            ]
+          },
+          "normalized_delta_score": 0.033639143730886834,
+          "observation_id": "metric_delta_4"
+        },
+        {
+          "delta": -26.0,
+          "kind": "count",
+          "message": "shared_vocabulary_overlap_count decreased by 26.0, suggesting less vocabulary reuse.",
+          "metric_id": "shared_vocabulary_overlap_count",
+          "module_context": {
+            "change_basis": "node_shape_count_and_property_shape_count",
+            "metric_focus": "overall_change",
+            "top_changed_modules": [
+              {
+                "change_magnitude": 239,
+                "left_node_shape_count": 15,
+                "left_property_shape_count": 224,
+                "model_id": "traceability_life_cycle_events",
+                "node_shape_delta": -15,
+                "property_shape_delta": -224,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 98,
+                "left_node_shape_count": 32,
+                "left_property_shape_count": 66,
+                "model_id": "product_profile",
+                "node_shape_delta": -32,
+                "property_shape_delta": -66,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 44,
+                "left_node_shape_count": 7,
+                "left_property_shape_count": 37,
+                "model_id": "dp_record_metadata",
+                "node_shape_delta": -7,
+                "property_shape_delta": -37,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              }
+            ]
+          },
+          "normalized_delta_score": 1.0,
+          "observation_id": "metric_delta_7"
+        },
+        {
+          "delta": -54.0,
+          "kind": "count",
+          "message": "number_of_closed_shapes decreased by 54.0, suggesting a shift in modelling explicitness.",
+          "metric_id": "number_of_closed_shapes",
+          "module_context": {
+            "change_basis": "node_shape_count_and_property_shape_count",
+            "metric_focus": "node_shape_count",
+            "top_changed_modules": [
+              {
+                "change_magnitude": 98,
+                "left_node_shape_count": 32,
+                "left_property_shape_count": 66,
+                "model_id": "product_profile",
+                "node_shape_delta": -32,
+                "property_shape_delta": -66,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 239,
+                "left_node_shape_count": 15,
+                "left_property_shape_count": 224,
+                "model_id": "traceability_life_cycle_events",
+                "node_shape_delta": -15,
+                "property_shape_delta": -224,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 44,
+                "left_node_shape_count": 7,
+                "left_property_shape_count": 37,
+                "model_id": "dp_record_metadata",
+                "node_shape_delta": -7,
+                "property_shape_delta": -37,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              }
+            ]
+          },
+          "normalized_delta_score": 1.0,
+          "observation_id": "metric_delta_9"
+        },
+        {
+          "delta": -291.0,
+          "kind": "count",
+          "message": "number_of_datatype_constrained_properties decreased by 291.0, suggesting a shift in modelling explicitness.",
+          "metric_id": "number_of_datatype_constrained_properties",
+          "module_context": {
+            "change_basis": "node_shape_count_and_property_shape_count",
+            "metric_focus": "overall_change",
+            "top_changed_modules": [
+              {
+                "change_magnitude": 239,
+                "left_node_shape_count": 15,
+                "left_property_shape_count": 224,
+                "model_id": "traceability_life_cycle_events",
+                "node_shape_delta": -15,
+                "property_shape_delta": -224,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 98,
+                "left_node_shape_count": 32,
+                "left_property_shape_count": 66,
+                "model_id": "product_profile",
+                "node_shape_delta": -32,
+                "property_shape_delta": -66,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 44,
+                "left_node_shape_count": 7,
+                "left_property_shape_count": 37,
+                "model_id": "dp_record_metadata",
+                "node_shape_delta": -7,
+                "property_shape_delta": -37,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              }
+            ]
+          },
+          "normalized_delta_score": 0.9831081081081081,
+          "observation_id": "metric_delta_10"
+        },
+        {
+          "delta": -321.0,
+          "kind": "count",
+          "message": "number_of_property_shapes decreased by 321.0, indicating structural expansion or contraction.",
+          "metric_id": "number_of_property_shapes",
+          "module_context": {
+            "change_basis": "node_shape_count_and_property_shape_count",
+            "metric_focus": "property_shape_count",
+            "top_changed_modules": [
+              {
+                "change_magnitude": 239,
+                "left_node_shape_count": 15,
+                "left_property_shape_count": 224,
+                "model_id": "traceability_life_cycle_events",
+                "node_shape_delta": -15,
+                "property_shape_delta": -224,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 98,
+                "left_node_shape_count": 32,
+                "left_property_shape_count": 66,
+                "model_id": "product_profile",
+                "node_shape_delta": -32,
+                "property_shape_delta": -66,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 44,
+                "left_node_shape_count": 7,
+                "left_property_shape_count": 37,
+                "model_id": "dp_record_metadata",
+                "node_shape_delta": -7,
+                "property_shape_delta": -37,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              }
+            ]
+          },
+          "normalized_delta_score": 0.981651376146789,
+          "observation_id": "metric_delta_11"
+        },
+        {
+          "delta": -52.0,
+          "kind": "count",
+          "message": "number_of_shapes decreased by 52.0, indicating structural expansion or contraction.",
+          "metric_id": "number_of_shapes",
+          "module_context": {
+            "change_basis": "node_shape_count_and_property_shape_count",
+            "metric_focus": "node_shape_count",
+            "top_changed_modules": [
+              {
+                "change_magnitude": 98,
+                "left_node_shape_count": 32,
+                "left_property_shape_count": 66,
+                "model_id": "product_profile",
+                "node_shape_delta": -32,
+                "property_shape_delta": -66,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 239,
+                "left_node_shape_count": 15,
+                "left_property_shape_count": 224,
+                "model_id": "traceability_life_cycle_events",
+                "node_shape_delta": -15,
+                "property_shape_delta": -224,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 44,
+                "left_node_shape_count": 7,
+                "left_property_shape_count": 37,
+                "model_id": "dp_record_metadata",
+                "node_shape_delta": -7,
+                "property_shape_delta": -37,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              }
+            ]
+          },
+          "normalized_delta_score": 0.9629629629629629,
+          "observation_id": "metric_delta_12"
+        },
+        {
+          "delta": -52.0,
+          "kind": "count",
+          "message": "number_of_target_declarations decreased by 52.0, indicating structural expansion or contraction.",
+          "metric_id": "number_of_target_declarations",
+          "module_context": {
+            "change_basis": "node_shape_count_and_property_shape_count",
+            "metric_focus": "overall_change",
+            "top_changed_modules": [
+              {
+                "change_magnitude": 239,
+                "left_node_shape_count": 15,
+                "left_property_shape_count": 224,
+                "model_id": "traceability_life_cycle_events",
+                "node_shape_delta": -15,
+                "property_shape_delta": -224,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 98,
+                "left_node_shape_count": 32,
+                "left_property_shape_count": 66,
+                "model_id": "product_profile",
+                "node_shape_delta": -32,
+                "property_shape_delta": -66,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 44,
+                "left_node_shape_count": 7,
+                "left_property_shape_count": 37,
+                "model_id": "dp_record_metadata",
+                "node_shape_delta": -7,
+                "property_shape_delta": -37,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              }
+            ]
+          },
+          "normalized_delta_score": 0.9629629629629629,
+          "observation_id": "metric_delta_13"
+        },
+        {
+          "delta": -19.0,
+          "kind": "count",
+          "message": "number_of_object_reference_properties decreased by 19.0, suggesting a shift in modelling explicitness.",
+          "metric_id": "number_of_object_reference_properties",
+          "module_context": {
+            "change_basis": "node_shape_count_and_property_shape_count",
+            "metric_focus": "overall_change",
+            "top_changed_modules": [
+              {
+                "change_magnitude": 239,
+                "left_node_shape_count": 15,
+                "left_property_shape_count": 224,
+                "model_id": "traceability_life_cycle_events",
+                "node_shape_delta": -15,
+                "property_shape_delta": -224,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 98,
+                "left_node_shape_count": 32,
+                "left_property_shape_count": 66,
+                "model_id": "product_profile",
+                "node_shape_delta": -32,
+                "property_shape_delta": -66,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              },
+              {
+                "change_magnitude": 44,
+                "left_node_shape_count": 7,
+                "left_property_shape_count": 37,
+                "model_id": "dp_record_metadata",
+                "node_shape_delta": -7,
+                "property_shape_delta": -37,
+                "right_node_shape_count": 0,
+                "right_property_shape_count": 0
+              }
+            ]
+          },
+          "normalized_delta_score": 0.95,
+          "observation_id": "metric_delta_14"
+        }
+      ]
+    }
+  },
+  "diagnostics": [],
+  "inputs": {
+    "comparison_scope_label": "battery_product_identification",
+    "left_profile_id": "ce_rise_battery_product_identification_with_traceability_live",
+    "right_profile_id": "batterypass_battery_product_identification"
+  },
+  "result_type": "comparison_result"
+}

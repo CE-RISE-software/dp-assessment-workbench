@@ -7,7 +7,7 @@ All public functions return JSON-compatible dictionaries. The same result payloa
 Import from `dpawb.api`:
 
 ```python
-from dpawb.api import assess, coverage, compare, prioritize, summarize
+from dpawb.api import assess, coverage, compare, prioritize, recommend_composition, summarize
 from dpawb.api import capabilities, schema, template, vocabulary
 ```
 
@@ -64,6 +64,21 @@ Input:
 
 This operation is rule-based. It does not call an AI model.
 
+### `recommend_composition(left_assessment_path: str, right_assessment_path: str, comparison_path: str | None = None, coverage_paths: list[str] | None = None) -> dict[str, object]`
+
+Recommend a deterministic combined composition from two assessed profiles and return a `composition_recommendation_result`.
+
+Inputs:
+
+- `left_assessment_path`: local path to the left `assessment_result` JSON document.
+- `right_assessment_path`: local path to the right `assessment_result` JSON document.
+- `comparison_path`: optional local path to one `comparison_result` JSON document.
+- `coverage_paths`: optional list of `coverage_result` JSON document paths.
+
+The operation emits a proposed `candidate_profile`, module inclusion recommendations, and alignment-based deduplication review items.
+
+This is decision support, not model generation. It helps a human or AI agent decide how to combine two model sets, for example by keeping CE-RISE passport metadata and adding BatteryPass battery-specific detail while flagging duplicated identity or category concepts for review. It does not rewrite SHACL.
+
 ## Discovery Operations
 
 ### `schema(name: str) -> dict[str, object]`
@@ -79,6 +94,7 @@ Common names include:
 - `coverage_result`
 - `comparison_result`
 - `prioritization_result`
+- `composition_recommendation_result`
 - `summary_result`
 
 ### `vocabulary(name: str) -> dict[str, object]`
@@ -113,6 +129,6 @@ Agents should treat every API call as a deterministic pipeline step:
 1. Prepare explicit YAML or JSON input files.
 2. Call one API function.
 3. Store the returned dictionary as a JSON result document when it is needed by a downstream step.
-4. Pass stored result paths to downstream operations such as `compare`, `prioritize`, or `summarize`.
+4. Pass stored result paths to downstream operations such as `compare`, `prioritize`, `recommend_composition`, or `summarize`.
 
 The API does not perform hidden semantic mapping. Alignment-aware behavior only uses analyst-authored alignment files.

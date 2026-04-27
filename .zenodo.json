@@ -18,7 +18,7 @@
     "Digital Material Passport",
     "Assessment Workbench"
   ],
-  "notes": "v0.1.1 - Addition of MCP server, deployment and registration.",
+  "notes": "v0.1.2 - Addition of optional composition recommendation operation.",
   "communities": [
     { "identifier": "ce-rise" },
     { "identifier": "impact" }

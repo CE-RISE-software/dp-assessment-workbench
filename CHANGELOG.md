@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2] - 2026-04-27
+
+### Added
+
+- Optional composition recommendation operation for proposing combined profiles from two assessed model sets
+- Self-contained composition recommendation example and documentation for package, CLI, and MCP use
+
 ## [0.1.1] - 2026-04-24
 
 ### Added

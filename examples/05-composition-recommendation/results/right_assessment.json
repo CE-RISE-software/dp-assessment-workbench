@@ -1,0 +1,171 @@
+{
+  "content": {
+    "maintainability_findings": [
+      {
+        "finding_id": "dangling_reference_1",
+        "message": "Referenced object_reference cannot be resolved within the composed profile.",
+        "severity": "high",
+        "signal_type": "dangling_reference",
+        "source_reference": {
+          "module_id": "general_product_information",
+          "referenced_iri": "https://batterypass.example.org/general-product-information/ContactInformation",
+          "shape": "https://batterypass.example.org/general-product-information/manufacturer_information_property"
+        }
+      }
+    ],
+    "metrics": [
+      {
+        "denominator": 6,
+        "kind": "share",
+        "metric_id": "cardinality_bounded_property_share",
+        "numerator": 6,
+        "value": 1.0
+      },
+      {
+        "denominator": 6,
+        "kind": "density",
+        "metric_id": "constraint_density",
+        "numerator": 15,
+        "value": 2.5
+      },
+      {
+        "kind": "count",
+        "metric_id": "cross_module_reference_count",
+        "value": 0
+      },
+      {
+        "denominator": 1,
+        "kind": "share",
+        "metric_id": "cross_module_reference_share",
+        "numerator": 0,
+        "value": 0.0
+      },
+      {
+        "kind": "count",
+        "metric_id": "number_of_closed_shapes",
+        "value": 0
+      },
+      {
+        "kind": "count",
+        "metric_id": "number_of_datatype_constrained_properties",
+        "value": 5
+      },
+      {
+        "kind": "count",
+        "metric_id": "number_of_object_reference_properties",
+        "value": 1
+      },
+      {
+        "kind": "count",
+        "metric_id": "number_of_property_shapes",
+        "value": 6
+      },
+      {
+        "kind": "count",
+        "metric_id": "number_of_shapes",
+        "value": 2
+      },
+      {
+        "kind": "count",
+        "metric_id": "number_of_target_declarations",
+        "value": 2
+      },
+      {
+        "denominator": 6,
+        "kind": "share",
+        "metric_id": "open_property_share",
+        "numerator": 0,
+        "value": 0.0
+      },
+      {
+        "kind": "count",
+        "metric_id": "shared_vocabulary_overlap_count",
+        "value": 0
+      },
+      {
+        "denominator": 27,
+        "kind": "share",
+        "metric_id": "shared_vocabulary_overlap_ratio",
+        "numerator": 0,
+        "value": 0.0
+      },
+      {
+        "denominator": 6,
+        "kind": "share",
+        "metric_id": "typed_property_share",
+        "numerator": 6,
+        "value": 1.0
+      }
+    ],
+    "modules": [
+      {
+        "model_id": "general_product_information",
+        "node_shape_count": 2,
+        "property_shape_count": 6,
+        "source": "./examples/05-composition-recommendation/models/general_product_information_1_2_0.shacl.ttl",
+        "source_documents": [
+          "./examples/05-composition-recommendation/models/general_product_information_1_2_0.shacl.ttl"
+        ]
+      }
+    ],
+    "profile": {
+      "comparison_scope_label": "battery_product_identification",
+      "label": "BatteryPass battery product identification reduced slice",
+      "models": [
+        {
+          "model_id": "general_product_information",
+          "model_version": "1.2.0",
+          "source": "./examples/05-composition-recommendation/models/general_product_information_1_2_0.shacl.ttl"
+        }
+      ],
+      "profile_id": "batterypass_battery_product_identification",
+      "profile_version": "1.2.0_proxy"
+    },
+    "trace_index": {
+      "class_or_concept_iris": [
+        "https://batterypass.example.org/general-product-information/ContactInformation",
+        "https://batterypass.example.org/general-product-information/GeneralProductInformation"
+      ],
+      "property_path_iris": [
+        "https://batterypass.example.org/general-product-information/batteryCategory",
+        "https://batterypass.example.org/general-product-information/batteryPassportIdentifier",
+        "https://batterypass.example.org/general-product-information/contactName",
+        "https://batterypass.example.org/general-product-information/identifier",
+        "https://batterypass.example.org/general-product-information/manufacturerInformation",
+        "https://batterypass.example.org/general-product-information/productIdentifier"
+      ],
+      "property_shape_iris": [
+        "https://batterypass.example.org/general-product-information/battery_category_property",
+        "https://batterypass.example.org/general-product-information/battery_passport_identifier_property",
+        "https://batterypass.example.org/general-product-information/contact_name_property",
+        "https://batterypass.example.org/general-product-information/manufacturer_identifier_property",
+        "https://batterypass.example.org/general-product-information/manufacturer_information_property",
+        "https://batterypass.example.org/general-product-information/product_identifier_property"
+      ],
+      "shape_iris": [
+        "https://batterypass.example.org/general-product-information/ContactInformationShape",
+        "https://batterypass.example.org/general-product-information/GeneralProductInformationShape"
+      ]
+    }
+  },
+  "diagnostics": [
+    {
+      "level": "info",
+      "message": "Contradiction detection currently covers direct cardinality conflicts and datatype-versus-object-reference conflicts only."
+    },
+    {
+      "level": "info",
+      "message": "Import resolution currently follows explicit owl:imports links only."
+    },
+    {
+      "level": "info",
+      "message": "Release-1 metric formulas use total property shapes as the denominator for property-based shares and total shapes for shape-based counts."
+    }
+  ],
+  "inputs": {
+    "comparison_scope_label": "battery_product_identification",
+    "profile_id": "batterypass_battery_product_identification",
+    "profile_version": "1.2.0_proxy"
+  },
+  "result_type": "assessment_result"
+}

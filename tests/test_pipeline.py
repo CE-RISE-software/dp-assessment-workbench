@@ -9,7 +9,18 @@ import rdflib
 import yaml
 from jsonschema import Draft202012Validator
 
-from dpawb.api import assess, capabilities, compare, coverage, prioritize, schema, summarize, template, vocabulary
+from dpawb.api import (
+    assess,
+    capabilities,
+    compare,
+    coverage,
+    prioritize,
+    recommend_composition,
+    schema,
+    summarize,
+    template,
+    vocabulary,
+)
 from dpawb.operations.coverage import PropertyCandidate, _classify_item, _classify_join
 from dpawb.operations.summarize import render_markdown
 
@@ -33,6 +44,8 @@ class PipelineTests(unittest.TestCase):
         self.assertIn("alignment", result["content"]["schemas"])
         self.assertIn("summarize", [item["command"] for item in commands])
         self.assertIn("summary_result", result["content"]["schemas"])
+        self.assertIn("recommend-composition", [item["command"] for item in commands])
+        self.assertIn("composition_recommendation_result", result["content"]["schemas"])
 
     def test_assess_latest_fixture_returns_metrics(self) -> None:
         result = assess(str(FIXTURES / "profiles" / "synthetic_evolution_latest.yaml"))
@@ -421,6 +434,28 @@ class PipelineTests(unittest.TestCase):
         self.assertIn("# Summary", markdown)
         self.assertIn("## Key Points", markdown)
 
+    def test_recommend_composition_emits_candidate_profile_and_deduplication_reviews(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            left_assessment = assess(str(FIXTURES / "profiles" / "synthetic_solution_a.yaml"))
+            right_assessment = assess(str(FIXTURES / "profiles" / "synthetic_solution_b.yaml"))
+            left_path = Path(tmpdir) / "left_assessment.json"
+            right_path = Path(tmpdir) / "right_assessment.json"
+            comparison_path = Path(tmpdir) / "comparison.json"
+            left_path.write_text(json.dumps(left_assessment), encoding="utf-8")
+            right_path.write_text(json.dumps(right_assessment), encoding="utf-8")
+            comparison_result = compare(
+                str(left_path),
+                str(right_path),
+                str(FIXTURES / "alignments" / "synthetic_solution_alignment.yaml"),
+            )
+            comparison_path.write_text(json.dumps(comparison_result), encoding="utf-8")
+            recommendation = recommend_composition(str(left_path), str(right_path), str(comparison_path))
+
+        self.assertEqual(recommendation["result_type"], "composition_recommendation_result")
+        self.assertIn("candidate_profile", recommendation["content"])
+        self.assertGreaterEqual(len(recommendation["content"]["module_recommendations"]), 1)
+        self.assertGreaterEqual(len(recommendation["content"]["entity_recommendations"]), 1)
+
     def test_discovery_artifacts_are_loadable(self) -> None:
         self.assertEqual(schema("profile")["content"]["artifact_kind"], "schema")
         self.assertEqual(schema("assessment_result")["content"]["artifact_kind"], "schema")
@@ -464,6 +499,15 @@ class PipelineTests(unittest.TestCase):
             errors = list(validator.iter_errors(document))
             self.assertEqual(errors, [], msg=f"{path} schema errors: {[error.message for error in errors]}")
 
+    def test_example_recommendation_results_validate_against_schema(self) -> None:
+        validator = Draft202012Validator(schema("composition_recommendation_result")["content"]["document"])
+        result_paths = sorted(EXAMPLES.glob("**/results/recommendation.json"))
+        self.assertGreater(len(result_paths), 0)
+        for path in result_paths:
+            document = json.loads(path.read_text(encoding="utf-8"))
+            errors = list(validator.iter_errors(document))
+            self.assertEqual(errors, [], msg=f"{path} schema errors: {[error.message for error in errors]}")
+
     def test_results_validate_against_built_in_output_schemas(self) -> None:
         assessment_result = assess(str(FIXTURES / "profiles" / "synthetic_solution_a.yaml"))
         coverage_result = coverage(
@@ -480,12 +524,14 @@ class PipelineTests(unittest.TestCase):
             coverage_path.write_text(json.dumps(coverage_result), encoding="utf-8")
             prioritization_result = prioritize(str(left), coverage_paths=[str(coverage_path)])
             summary_result = summarize([str(coverage_path)])
+            recommendation_result = recommend_composition(str(left), str(right))
 
         schema_names = {
             "assessment_result": assessment_result,
             "coverage_result": coverage_result,
             "comparison_result": comparison_result,
             "prioritization_result": prioritization_result,
+            "composition_recommendation_result": recommendation_result,
             "summary_result": summary_result,
         }
         for schema_name, document in schema_names.items():

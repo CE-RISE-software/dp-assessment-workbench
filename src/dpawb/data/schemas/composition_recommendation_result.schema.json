@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "result_type",
+    "inputs",
+    "content",
+    "diagnostics"
+  ],
+  "properties": {
+    "result_type": {
+      "const": "composition_recommendation_result"
+    },
+    "inputs": {
+      "type": "object",
+      "required": [
+        "left_assessment_path",
+        "right_assessment_path",
+        "comparison_scope_label"
+      ],
+      "additionalProperties": true
+    },
+    "content": {
+      "type": "object",
+      "required": [
+        "recommendation_strategy",
+        "preferred_side_for_duplicate_entities",
+        "coverage_summaries",
+        "candidate_profile",
+        "module_recommendations",
+        "entity_recommendations",
+        "review_items"
+      ],
+      "properties": {
+        "recommendation_strategy": { "type": "string" },
+        "preferred_side_for_duplicate_entities": {
+          "type": "string",
+          "enum": ["left", "right"]
+        },
+        "coverage_summaries": { "type": "object" },
+        "candidate_profile": { "type": "object" },
+        "module_recommendations": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "entity_recommendations": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "review_items": {
+          "type": "array",
+          "items": { "type": "object" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": true
+}

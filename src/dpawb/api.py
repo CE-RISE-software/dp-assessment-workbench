@@ -8,6 +8,7 @@ from dpawb.operations.discovery import schema as _schema
 from dpawb.operations.discovery import template as _template
 from dpawb.operations.discovery import vocabulary as _vocabulary
 from dpawb.operations.prioritize import prioritize as _prioritize
+from dpawb.operations.recommend import recommend_composition as _recommend_composition
 from dpawb.operations.summarize import summarize as _summarize
 
 
@@ -89,6 +90,28 @@ def summarize(result_paths: list[str]) -> dict[str, object]:
     return _summarize(result_paths)
 
 
+def recommend_composition(
+    left_assessment_path: str,
+    right_assessment_path: str,
+    comparison_path: str | None = None,
+    coverage_paths: list[str] | None = None,
+) -> dict[str, object]:
+    """Recommend a deterministic combined composition from two assessed profiles.
+
+    Parameters:
+        left_assessment_path: Local path to the left ``assessment_result`` JSON document.
+        right_assessment_path: Local path to the right ``assessment_result`` JSON document.
+        comparison_path: Optional local path to a ``comparison_result`` JSON document.
+        coverage_paths: Optional list of ``coverage_result`` JSON document paths.
+
+    Returns a ``composition_recommendation_result`` document with a proposed
+    combined profile, module-level inclusion recommendations, and
+    alignment-based deduplication review items.
+    """
+
+    return _recommend_composition(left_assessment_path, right_assessment_path, comparison_path, coverage_paths)
+
+
 def schema(name: str) -> dict[str, object]:
     """Return one bundled JSON Schema as a ``schema_result`` document."""
 
@@ -122,4 +145,5 @@ __all__ = [
     "template",
     "capabilities",
     "summarize",
+    "recommend_composition",
 ]

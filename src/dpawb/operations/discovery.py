@@ -13,6 +13,7 @@ SCHEMAS = {
     "coverage_result": "schemas/coverage_result.schema.json",
     "comparison_result": "schemas/comparison_result.schema.json",
     "prioritization_result": "schemas/prioritization_result.schema.json",
+    "composition_recommendation_result": "schemas/composition_recommendation_result.schema.json",
     "summary_result": "schemas/summary_result.schema.json",
 }
 
@@ -116,6 +117,19 @@ def capabilities() -> dict[str, object]:
                         "coverage": "Optional list of coverage_result JSON document paths.",
                     },
                     "result_type": "prioritization_result",
+                },
+                {
+                    "command": "recommend-composition",
+                    "api_function": "recommend_composition",
+                    "mcp_tool": "recommend_composition",
+                    "inputs": ["left_assessment", "right_assessment", "optional_comparison", "optional_coverage_list"],
+                    "input_fields": {
+                        "left_assessment": "Path to the left assessment_result JSON document.",
+                        "right_assessment": "Path to the right assessment_result JSON document.",
+                        "comparison": "Optional path to one comparison_result JSON document.",
+                        "coverage": "Optional list of coverage_result JSON document paths.",
+                    },
+                    "result_type": "composition_recommendation_result",
                 },
                 {
                     "command": "schema",

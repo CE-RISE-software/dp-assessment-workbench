@@ -6,7 +6,18 @@ from collections.abc import Callable
 from typing import Any
 
 from dpawb import __version__
-from dpawb.api import assess, capabilities, compare, coverage, prioritize, schema, summarize, template, vocabulary
+from dpawb.api import (
+    assess,
+    capabilities,
+    compare,
+    coverage,
+    prioritize,
+    recommend_composition,
+    schema,
+    summarize,
+    template,
+    vocabulary,
+)
 from dpawb.errors import DpawbError, InputError
 from dpawb.io import dump_json
 
@@ -111,6 +122,33 @@ TOOL_DEFINITIONS = [
         ),
     },
     {
+        "name": "recommend_composition",
+        "title": "Recommend Composition",
+        "description": "Recommend a deterministic combined composition from two assessment results.",
+        "inputSchema": _tool_input_schema(
+            {
+                "left_assessment": {
+                    "type": "string",
+                    "description": "Local path to the left assessment_result JSON document.",
+                },
+                "right_assessment": {
+                    "type": "string",
+                    "description": "Local path to the right assessment_result JSON document.",
+                },
+                "comparison": {
+                    "type": "string",
+                    "description": "Optional local path to one comparison_result JSON document.",
+                },
+                "coverage": {
+                    "type": "array",
+                    "description": "Optional list of local coverage_result JSON document paths.",
+                    "items": {"type": "string"},
+                },
+            },
+            ["left_assessment", "right_assessment"],
+        ),
+    },
+    {
         "name": "schema",
         "title": "Get Schema",
         "description": "Return one bundled JSON Schema.",
@@ -126,6 +164,7 @@ TOOL_DEFINITIONS = [
                         "coverage_result",
                         "comparison_result",
                         "prioritization_result",
+                        "composition_recommendation_result",
                         "summary_result",
                     ],
                 }
@@ -197,6 +236,7 @@ class McpServer:
             "coverage": self._call_coverage,
             "compare": self._call_compare,
             "prioritize": self._call_prioritize,
+            "recommend_composition": self._call_recommend_composition,
             "schema": self._call_schema,
             "vocabulary": self._call_vocabulary,
             "template": self._call_template,
@@ -340,6 +380,24 @@ class McpServer:
         else:
             raise InputError("Tool argument 'coverage' must be a list of strings when provided.")
         return prioritize(self._require_string(arguments, "assessment"), comparison, coverage_list)
+
+    def _call_recommend_composition(self, arguments: dict[str, object]) -> dict[str, object]:
+        comparison = arguments.get("comparison")
+        if comparison is not None and not isinstance(comparison, str):
+            raise InputError("Tool argument 'comparison' must be a string when provided.")
+        coverage_paths = arguments.get("coverage")
+        if coverage_paths is None:
+            coverage_list: list[str] = []
+        elif isinstance(coverage_paths, list) and all(isinstance(item, str) for item in coverage_paths):
+            coverage_list = coverage_paths
+        else:
+            raise InputError("Tool argument 'coverage' must be a list of strings when provided.")
+        return recommend_composition(
+            self._require_string(arguments, "left_assessment"),
+            self._require_string(arguments, "right_assessment"),
+            comparison,
+            coverage_list,
+        )
 
     def _call_schema(self, arguments: dict[str, object]) -> dict[str, object]:
         return schema(self._require_string(arguments, "name"))

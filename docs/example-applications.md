@@ -18,8 +18,10 @@ The examples are written as a tutorial path for both humans and AI agents:
   Run the first hand-checkable aligned use-case comparison.
 - [Extended use-case comparison](../examples/04-extended-use-case-comparison/README.md)
   Run a broader aligned use-case comparison to exercise more coverage signals.
+- [Composition recommendation](../examples/05-composition-recommendation/README.md)
+  Recommend a combined profile from two assessed model sets.
 
-## Why Four Folders?
+## Why Five Folders?
 
 The folders reflect the analysis workflow, not source ecosystems.
 
@@ -41,6 +43,7 @@ The comparison examples are self-contained and follow the same preparation patte
 10. Run comparison.
 11. Run prioritization.
 12. Run deterministic summarization.
+13. Run composition recommendation when a combined profile is useful.
 
 ## Folder Layout
 
@@ -131,3 +134,22 @@ Purpose:
 Start here:
 
 - [examples/04-extended-use-case-comparison/README.md](../examples/04-extended-use-case-comparison/README.md)
+
+## Composition Recommendation
+
+Folder:
+
+```text
+examples/05-composition-recommendation/
+```
+
+Purpose:
+
+- recommend a combined profile from two assessed model sets
+- preserve complementary model coverage
+- identify declared equivalent entities that need deduplication review
+- keep SHACL rewriting outside the automated step
+
+Start here:
+
+- [examples/05-composition-recommendation/README.md](../examples/05-composition-recommendation/README.md)

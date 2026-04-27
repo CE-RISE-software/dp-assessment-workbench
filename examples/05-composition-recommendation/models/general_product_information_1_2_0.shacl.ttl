@@ -1,0 +1,56 @@
+@prefix bp: <https://batterypass.example.org/general-product-information/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+bp:GeneralProductInformationShape
+  a sh:NodeShape ;
+  sh:targetClass bp:GeneralProductInformation ;
+  sh:property bp:battery_passport_identifier_property ;
+  sh:property bp:product_identifier_property ;
+  sh:property bp:battery_category_property ;
+  sh:property bp:manufacturer_information_property .
+
+bp:battery_passport_identifier_property
+  a sh:PropertyShape ;
+  sh:path bp:batteryPassportIdentifier ;
+  sh:datatype xsd:string ;
+  sh:minCount 1 ;
+  sh:maxCount 1 .
+
+bp:product_identifier_property
+  a sh:PropertyShape ;
+  sh:path bp:productIdentifier ;
+  sh:datatype xsd:string ;
+  sh:minCount 1 ;
+  sh:maxCount 1 .
+
+bp:battery_category_property
+  a sh:PropertyShape ;
+  sh:path bp:batteryCategory ;
+  sh:datatype xsd:string ;
+  sh:minCount 1 ;
+  sh:maxCount 1 .
+
+bp:manufacturer_information_property
+  a sh:PropertyShape ;
+  sh:path bp:manufacturerInformation ;
+  sh:class bp:ContactInformation ;
+  sh:minCount 1 .
+
+bp:ContactInformationShape
+  a sh:NodeShape ;
+  sh:targetClass bp:ContactInformation ;
+  sh:property bp:contact_name_property ;
+  sh:property bp:manufacturer_identifier_property .
+
+bp:contact_name_property
+  a sh:PropertyShape ;
+  sh:path bp:contactName ;
+  sh:datatype xsd:string ;
+  sh:minCount 1 .
+
+bp:manufacturer_identifier_property
+  a sh:PropertyShape ;
+  sh:path bp:identifier ;
+  sh:datatype xsd:string ;
+  sh:minCount 1 .
