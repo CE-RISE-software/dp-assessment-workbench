@@ -1,6 +1,6 @@
 FROM python:3.12-slim
 
-ARG VERSION=0.1.1
+ARG VERSION=0.1.2
 
 LABEL org.opencontainers.image.title="dpawb MCP Server"
 LABEL org.opencontainers.image.description="Model Context Protocol server for the Digital Passport Model Assessment Workbench."
